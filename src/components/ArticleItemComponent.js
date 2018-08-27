@@ -8,6 +8,7 @@ import {
     Image,
     TouchableOpacity
 } from 'react-native';
+import Card from './Base/Elements/Card/Card'
 
 var DomParser = require('react-native-html-parser').DOMParser;
 
@@ -20,16 +21,14 @@ class ArticleItemComponent extends React.Component {
     render() {
 
         return (
-            <View>
-                <TouchableOpacity onPress={() => this.props.onArticleClicked(this.props.article)}>
-                    <View style={{ padding: 6, opacity: this.props.selected ? 0.2 : 1 }}>
-                        <Image source={{uri: this.props.article.thumbnail_images.hometile.url}} 
-                               style={{width: '100%', height: 150}}/>
-                        <Text style={styles.biggerText}>{this.props.article.title_plain}</Text>
-                        <Text ellipsizeMode='tail' numberOfLines={3}>{this.getExcerpt()}</Text>
-                    </View>
-                </TouchableOpacity>
-            </View>
+            <TouchableOpacity onPress={() => this.props.onArticleClicked(this.props.article)}>
+                <Card containerStyle={{ opacity: this.props.selected ? 0.4 : 1 }}>
+                    <Image source={{ uri: this.props.article.thumbnail_images.hometile.url }}
+                        style={{ width: '100%', height: 150 }} />
+                    <Text style={styles.biggerText}>{this.props.article.title_plain}</Text>
+                    <Text ellipsizeMode='tail' numberOfLines={3}>{this.getExcerpt()}</Text>
+                </Card>
+            </TouchableOpacity>
         );
     }
 
@@ -44,9 +43,6 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: 'bold',
         marginTop: 6
-    },
-    selected: {
-        opacity: 0.2
     }
 });
 
