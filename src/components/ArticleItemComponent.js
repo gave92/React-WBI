@@ -6,7 +6,8 @@ import {
     Text,
     View,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    Platform
 } from 'react-native';
 import Card from './Base/Elements/Card/Card'
 
@@ -22,16 +23,22 @@ class ArticleItemComponent extends React.Component {
 
         return (
             <TouchableOpacity onPress={() => this.props.onArticleClicked(this.props.article)}>
-                <Card containerStyle={{ opacity: this.props.selected ? 0.4 : 1 }}>
+                <Card containerStyle={{ margin: 6, opacity: this.props.selected ? 0.4 : 1 }}>
                     <Image source={{ uri: this.props.article.thumbnail_images.hometile.url }}
                         style={{ width: '100%', height: 150 }} />
                     <Text style={styles.biggerText}>{this.props.article.title_plain}</Text>
-                    <Text ellipsizeMode='tail' numberOfLines={3}>{this.getExcerpt()}</Text>
+                    <Text id={this.props.article.id} ellipsizeMode='tail' numberOfLines={3}>{this.getExcerpt()}</Text>
                 </Card>
             </TouchableOpacity>
         );
     }
 
+    componentDidMount() {
+        if (Platform.OS === 'web') {
+            window.$clamp(document.getElementById(this.props.article.id), {clamp: 4});
+        }
+    }
+    
     getExcerpt() {
         let doc = new DomParser().parseFromString(this.props.article.excerpt, 'text/html')
         return doc.firstChild.textContent;

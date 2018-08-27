@@ -3,8 +3,9 @@
  */
 import * as types from "../actions/ActionTypes";
 
+const initialState = {articles: []};
 
-export default function articleReducer(state = {}, action) {
+export default function articleReducer(state = initialState, action) {
     switch (action.type) {
         case types.GUI_ARTICLE_SELECTED:
             return {
@@ -15,7 +16,7 @@ export default function articleReducer(state = {}, action) {
             return {
                 ...state,
                 data: action.data,
-                articles: action.articles
+                articles: [ ...state.articles, ...action.articles ]
             };
         case types.ARTICLES_FETCHING_ERROR:
             return {

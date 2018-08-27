@@ -8369,9 +8369,9 @@ react-native-axios@^0.17.1:
   dependencies:
     follow-redirects "0.0.7"
 
-react-native-html-parser@^0.0.5:
+"react-native-html-parser@https://github.com/g6ling/react-native-html-parser.git":
   version "0.0.5"
-  resolved "https://registry.yarnpkg.com/react-native-html-parser/-/react-native-html-parser-0.0.5.tgz#210a76626b7a472a4b5f5a85cb24b37b10344126"
+  resolved "https://github.com/g6ling/react-native-html-parser.git#cd29478a032693757649c2b4658e4013a04b1ef5"
 
 react-native-web@0.8.9:
   version "0.8.9"

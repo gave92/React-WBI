@@ -7,6 +7,7 @@ import {
     Text,
     View,
     FlatList,
+    ActivityIndicator
 } from 'react-native';
 
 // This is a dumb component that is common for native and web
@@ -14,16 +15,17 @@ import {
 class ArticleListComponent extends React.Component {
     constructor(props, context) {
         super(props, context);
-        this.state = {};
+        this.state = { page: 1 };
+        this.handleLoadMore = this.handleLoadMore.bind(this);
     }
 
     componentDidMount() {
-        this.props.loadArticles({ page: 1 })
+        this.props.loadArticles({ page: this.state.page })
     }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.articles !== this.props.articles) {
-            if (nextProps.articles) {
+            if (nextProps.articles && !nextProps.selected) {
                 this.props.onArticleClicked(nextProps.articles[0]);
             }
         }
@@ -36,10 +38,33 @@ class ArticleListComponent extends React.Component {
                 {this.props.error ? <Text style={styles.biggerText}>{JSON.stringify(this.props.error, null, 2)}</Text> : null}
                 <FlatList data={this.props.articles}
                     keyExtractor={(item, index) => item.id.toString()}
-                    renderItem={({ item }) => <ArticleItemComponent article={item} />} />
+                    numColumns={1}
+                    ListFooterComponent={this.renderFooter}
+                    renderItem={({ item }) => <ArticleItemComponent article={item} />}
+                    onEndReached={this.handleLoadMore}
+                    onEndThreshold={0} />
             </View>
         );
     }
+
+    handleLoadMore() {
+        this.setState({ page: this.state.page + 1 },
+            () => this.props.loadArticles({ page: this.state.page }))
+    }
+
+    renderFooter = () => {
+        return (
+            <View
+                style={{
+                    paddingVertical: 20,
+                    borderTopWidth: 1,
+                    borderColor: "#CED0CE"
+                }}
+            >
+                <ActivityIndicator animating size="large" />
+            </View>
+        );
+    };
 }
 
 const styles = StyleSheet.create({
@@ -48,6 +73,8 @@ const styles = StyleSheet.create({
         flexShrink: 0,
         flexGrow: 0,
         width: '30%',
+        maxWidth: 350,
+        minWidth: 300,
         height: '100%',
         backgroundColor: '#f3f3f3'
     },
@@ -55,6 +82,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
     },
 });
+
 
 function mapStateToProps(state, ownProps) {
     return {
@@ -71,7 +99,7 @@ function mapDispatchToProps(dispatch) {
             dispatch(ArticleActions.selectArticle(article))
         },
         loadArticles(args) {
-            dispatch(ArticleActions.fetchAllArticles(args))
+            dispatch(ArticleActions.fetchArticles(args))
         }
     }
 }

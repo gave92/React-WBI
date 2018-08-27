@@ -35,7 +35,15 @@ class Styler {
         var source = content;
 
         try {
-            var endYT = source.indexOf("<div class=\"embed-youtube\"><iframe");            
+            source = source.replace("<p>", "<div>");
+            source = source.replace("</p>", "</div>");
+        }
+        catch (ex) {
+
+        }
+
+        try {
+            var endYT = source.indexOf("<div class=\"embed-youtube\"><iframe");
             while (endYT !== -1) {
                 var i2 = source.indexOf("</iframe></div>", endYT);
                 var ytId = source.slice(endYT, endYT + i2 - endYT);
@@ -51,7 +59,7 @@ class Styler {
             }
         }
         catch (ex) {
-            
+
         }
 
         try {
@@ -61,7 +69,7 @@ class Styler {
                 "");
         }
         catch (ex) {
-            
+
         }
 
         try {
@@ -71,7 +79,7 @@ class Styler {
                 "");
         }
         catch (ex) {
-            
+
         }
 
         try {
@@ -81,13 +89,13 @@ class Styler {
                     source = source.remove(indexScript, source.indexOf("</script>", indexScript) + 9 - indexScript);
                 }
                 catch (ex) {
-                    
+
                 }
                 indexScript = source.indexOf("<script", indexScript);
             }
         }
         catch (ex) {
-            
+
         }
 
         try {
@@ -97,13 +105,13 @@ class Styler {
                     source = source.remove(indexScript, source.indexOf("</ins>", indexScript) + 6 - indexScript);
                 }
                 catch (ex) {
-                    
+
                 }
                 indexScript = source.indexOf("<ins", indexScript);
             }
         }
         catch (ex) {
-            
+
         }
 
         source = String.format(style, source, this.RetargetLinks, "", "black");
