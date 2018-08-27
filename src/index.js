@@ -2,19 +2,20 @@ import React from 'react';
 import {Provider} from "react-redux";
 import ReactNative from 'react-native'
 import store from "./utilities/storage/store";
-import TopLevelComponent from './screens/EntryScreen';
-import Routing, {Router} from './utilities/routing/index';
+import EntryScreen from './screens/EntryScreen';
+import { createSwitchNavigator } from 'react-navigation';
 
-const Route = Routing.Route;
-
+const RootStack = createSwitchNavigator({
+    Home: {
+        screen: EntryScreen
+    },
+});
 
 class App extends React.Component {
     render() {
         return (
             <Provider store={store}>
-                <Router>
-                    <Route path='/' component={TopLevelComponent}/>
-                </Router>
+                <RootStack />
             </Provider>
         );
     }

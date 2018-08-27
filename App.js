@@ -1,19 +1,20 @@
 import React from 'react';
-import {Provider} from "react-redux";
+import { Provider } from "react-redux";
 import store from "./src/utilities/storage/store";
-import TopLevelComponent from './src/screens/EntryScreen';
-import Routing, {Router} from './src/utilities/routing/index';
+import EntryScreen from './src/screens/EntryScreen';
+import { createSwitchNavigator } from 'react-navigation';
 
-const Route = Routing.Route;
-
+const RootStack = createSwitchNavigator({
+    Home: {
+        screen: EntryScreen
+    },
+});
 
 class App extends React.Component {
     render() {
         return (
             <Provider store={store}>
-                <Router>
-                    <Route path='/' component={TopLevelComponent}/>
-                </Router>
+                <RootStack />
             </Provider>
         );
     }
