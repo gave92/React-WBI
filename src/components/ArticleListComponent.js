@@ -1,5 +1,7 @@
 import React from 'react';
 import ArticleItemComponent from './../components/ArticleItemComponent'
+import * as ArticleActions from './../actions/ArticleActions';
+import { connect } from "react-redux";
 import {
     StyleSheet,
     Text,
@@ -15,14 +17,26 @@ class ArticleListComponent extends React.Component {
         this.state = {};
     }
 
+    componentDidMount() {
+        this.props.loadArticles({ page: 1 })
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.articles !== this.props.articles) {
+            if (nextProps.articles) {
+                this.props.onArticleClicked(nextProps.articles[0]);
+            }
+        }
+    }
+
     render() {
 
         return (
             <View style={styles.container}>
                 {this.props.error ? <Text style={styles.biggerText}>{JSON.stringify(this.props.error, null, 2)}</Text> : null}
                 <FlatList data={this.props.articles}
-                          keyExtractor={(item, index) => item.id.toString()}
-                          renderItem={({item}) => <ArticleItemComponent article={item}/>}/>
+                    keyExtractor={(item, index) => item.id.toString()}
+                    renderItem={({ item }) => <ArticleItemComponent article={item} />} />
             </View>
         );
     }
@@ -42,5 +56,25 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ArticleListComponent;
+function mapStateToProps(state, ownProps) {
+    return {
+        data: state.articleReducer.data,
+        articles: state.articleReducer.articles,
+        error: state.articleReducer.error,
+        selected: state.articleReducer.selected,
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        onArticleClicked(article) {
+            dispatch(ArticleActions.selectArticle(article))
+        },
+        loadArticles(args) {
+            dispatch(ArticleActions.fetchAllArticles(args))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ArticleListComponent);
 

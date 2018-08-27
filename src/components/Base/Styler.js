@@ -77,7 +77,6 @@ class Styler {
         try {
             let indexScript = source.indexOf("<script");
             while (indexScript !== -1) {
-                console.debug(indexScript)
                 try {
                     source = source.remove(indexScript, source.indexOf("</script>", indexScript) + 9 - indexScript);
                 }

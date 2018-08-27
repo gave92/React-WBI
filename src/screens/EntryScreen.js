@@ -1,6 +1,4 @@
 import React from 'react';
-import { connect } from "react-redux";
-import * as ArticleActions from './../actions/ArticleActions';
 import {
     StyleSheet,
     View,
@@ -22,17 +20,12 @@ class EntryScreen extends React.Component {
             <View style={styles.container}>
                 <AppHeaderComponent />
                 <View style={styles.masterdetail}>
-                    <ArticleListComponent articles={this.props.articles}
-                        error={this.props.error} />
+                    <ArticleListComponent />
                     <ArticleDetailComponent />
                 </View>
             </View>
         );
-    }
-
-    componentDidMount() {
-        this.props.loadArticles({ page: 1 })
-    }
+    }    
 }
 
 const styles = StyleSheet.create({
@@ -51,21 +44,4 @@ const styles = StyleSheet.create({
     }
 });
 
-function mapStateToProps(state) {
-    return {
-        data: state.articleReducer.data,
-        articles: state.articleReducer.articles,
-        error: state.articleReducer.error,
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        loadArticles(args) {
-            dispatch(ArticleActions.fetchAllArticles(args))
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(EntryScreen);
-
+export default EntryScreen;
