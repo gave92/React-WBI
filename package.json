@@ -1,0 +1,45 @@
+{
+  "name": "wbi",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest",
+    "web": "react-scripts start",
+    "build": "react-scripts build",
+    "test:web": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "electron": "concurrently \"react-scripts start\" \"electron .\""
+  },
+  "dependencies": {
+    "react": "16.4.1",
+    "react-art": "16.4.2",
+    "react-dom": "16.4.2",
+    "react-native": "0.55.4",
+    "react-native-axios": "^0.17.1",
+    "react-native-html-parser": "^0.0.5",
+    "react-native-web": "0.8.9",
+    "react-native-windows": "0.55.0-rc.0",
+    "react-redux": "5.0.7",
+    "react-router": "4.3.1",
+    "react-router-dom": "4.3.1",
+    "react-router-native": "4.3.0",
+    "redux": "4.0.0",
+    "redux-thunk": "2.3.0"
+  },
+  "devDependencies": {
+    "babel-jest": "23.4.2",
+    "babel-plugin-transform-react-remove-prop-types": "0.4.15",
+    "babel-preset-react-native": "4.0.0",
+    "concurrently": "4.0.0",
+    "electron": "2.0.8",
+    "jest": "23.5.0",
+    "react-scripts": "1.1.5",
+    "react-test-renderer": "16.4.1",
+    "rnpm-plugin-windows": "0.2.8"
+  },
+  "jest": {
+    "preset": "react-native"
+  },
+  "main": "index.electron.js"
+}
