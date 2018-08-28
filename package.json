@@ -13,12 +13,14 @@
     "install": "react-scripts-webpack-config-editor my-webpack-transformer.js"
   },
   "dependencies": {
+    "babel-preset-expo": "^4.0.0",
     "react": "16.4.1",
     "react-art": "16.4.2",
     "react-dom": "16.4.2",
     "react-native": "0.55.4",
     "react-native-axios": "^0.17.1",
     "react-native-html-parser": "https://github.com/g6ling/react-native-html-parser.git",
+    "react-native-responsive-ui": "^1.1.1",
     "react-native-web": "0.8.9",
     "react-native-windows": "0.55.0-rc.0",
     "react-navigation": "^2.12.1",

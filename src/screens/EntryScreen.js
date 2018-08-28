@@ -3,6 +3,7 @@ import {
     StyleSheet,
     View,
 } from 'react-native';
+import { MediaQuery } from "react-native-responsive-ui";
 import ArticleListComponent from './../components/ArticleListComponent'
 import ArticleDetailComponent from './../components/ArticleDetailComponent'
 
@@ -18,7 +19,9 @@ class EntryScreen extends React.Component {
         return (
             <View style={styles.container}>
                 <ArticleListComponent />
-                <ArticleDetailComponent />
+                <MediaQuery minWidth={700}>
+                    <ArticleDetailComponent />
+                </MediaQuery>
             </View>
         );
     }

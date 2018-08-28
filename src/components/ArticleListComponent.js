@@ -9,10 +9,10 @@ import {
     FlatList,
     ActivityIndicator
 } from 'react-native';
+import { ResponsiveComponent, ResponsiveStyleSheet } from "react-native-responsive-ui";
 
-// This is a dumb component that is common for native and web
 
-class ArticleListComponent extends React.Component {
+class ArticleListComponent extends ResponsiveComponent {
     constructor(props, context) {
         super(props, context);
         this.state = { page: 1 };
@@ -32,9 +32,9 @@ class ArticleListComponent extends React.Component {
     }
 
     render() {
-
+        const { ui } = this;
         return (
-            <View style={styles.container}>
+            <View style={ui.container}>
                 {this.props.error ? <Text style={styles.biggerText}>{JSON.stringify(this.props.error, null, 2)}</Text> : null}
                 <FlatList data={this.props.articles}
                     keyExtractor={(item, index) => item.id.toString()}
@@ -65,24 +65,46 @@ class ArticleListComponent extends React.Component {
             </View>
         );
     };
+
+    get ui() {
+        return ResponsiveStyleSheet.select([
+            {
+                query: { maxWidth: 700 },
+                style: {
+                    container: {
+                        display: 'flex',
+                        flexShrink: 0,
+                        flexGrow: 0,
+                        width: '100%',
+                        height: '100%',
+                        backgroundColor: '#E9E9EF'
+                    }
+                },
+            },
+            {
+                query: { minWidth: 700 },
+                style: {
+                    container: {
+                        display: 'flex',
+                        flexShrink: 0,
+                        flexGrow: 0,
+                        width: '30%',
+                        maxWidth: 320,
+                        minWidth: 270,
+                        height: '100%',
+                        backgroundColor: '#E9E9EF'
+                    }
+                },
+            }
+        ]);
+    }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        display: 'flex',
-        flexShrink: 0,
-        flexGrow: 0,
-        width: '30%',
-        maxWidth: 350,
-        minWidth: 300,
-        height: '100%',
-        backgroundColor: '#E9E9EF'
-    },
     biggerText: {
         fontSize: 14,
-    },
+    }
 });
-
 
 function mapStateToProps(state, ownProps) {
     return {
