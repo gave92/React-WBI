@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
         maxWidth: 350,
         minWidth: 300,
         height: '100%',
-        backgroundColor: '#f3f3f3'
+        backgroundColor: '#E9E9EF'
     },
     biggerText: {
         fontSize: 14,
