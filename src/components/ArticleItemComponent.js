@@ -67,7 +67,7 @@ class ArticleItemComponent extends ResponsiveComponent {
     get ui() {
         return ResponsiveStyleSheet.select([
             {
-                query: { maxWidth: 400 },
+                query: { minWidth: 0 },
                 style: {
                     container: {
                         display: 'flex', flexDirection: 'column'
@@ -78,7 +78,7 @@ class ArticleItemComponent extends ResponsiveComponent {
                 }
             },
             {
-                query: { minWidth: 400, maxWidth: 700 },
+                query: { minWidth: 400 },
                 style: {
                     container: {
                         display: 'flex', flexDirection: 'row'
