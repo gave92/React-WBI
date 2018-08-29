@@ -24,7 +24,7 @@ class ArticleScreen extends React.Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.window.width !== this.props.window.width) {
-            if (this.props.window && this.props.window.width < 700) {
+            if (this.props.window && this.props.window.width >= 700) {
                 this.props.navigation.goBack();
             }
         }

@@ -15,7 +15,7 @@ import { ResponsiveComponent, ResponsiveStyleSheet } from "react-native-responsi
 class ArticleListComponent extends ResponsiveComponent {
     constructor(props, context) {
         super(props, context);
-        this.state = { page: 1 };
+        this.state = { ...this.state, page: 1 };
         this.handleLoadMore = this.handleLoadMore.bind(this);
     }
 

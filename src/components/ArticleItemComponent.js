@@ -19,7 +19,7 @@ var DomParser = require('react-native-html-parser').DOMParser;
 class ArticleItemComponent extends ResponsiveComponent {
     constructor(props, context) {
         super(props, context);
-        this.state = {};
+        this.state = { ...this.state };
         this.onArticleClicked = this.onArticleClicked.bind(this);
     }
 
