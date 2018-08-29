@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { ResponsiveComponent, ResponsiveStyleSheet } from "react-native-responsive-ui";
 import Card from './Base/Elements/Card/Card'
+import { withNavigation } from 'react-navigation';
 
 var DomParser = require('react-native-html-parser').DOMParser;
 
@@ -19,18 +20,19 @@ class ArticleItemComponent extends ResponsiveComponent {
     constructor(props, context) {
         super(props, context);
         this.state = {};
+        this.onArticleClicked = this.onArticleClicked.bind(this);
     }
 
     render() {
         const { ui } = this;
         return (
-            <TouchableOpacity onPress={() => this.props.onArticleClicked(this.props.article)}>
+            <TouchableOpacity onPress={() => this.onArticleClicked()}>
                 <Card containerStyle={{ margin: 6, opacity: this.props.selected ? 0.4 : 1 }}>
                     <View style={ui.container}>
                         <Image source={{ uri: this.props.article.thumbnail_images.hometile.url }}
                             style={ui.image} />
                         <View style={{ marginLeft: 6, flexShrink: 1, display: 'flex' }}>
-                            <Text style={styles.biggerText}>{this.props.article.title_plain}</Text>
+                            <Text style={styles.biggerText}>{this.getTitle()}</Text>
                             <Text id={this.props.article.id} ellipsizeMode='tail' numberOfLines={3}>{this.getExcerpt()}</Text>
                         </View>
                     </View>
@@ -39,10 +41,22 @@ class ArticleItemComponent extends ResponsiveComponent {
         );
     }
 
+    onArticleClicked() {
+        this.props.onArticleClicked(this.props.article);
+        if (this.state.window && this.state.window.width < 700) {            
+            this.props.navigation.navigate('Article', { title: this.getTitle() })
+        }
+    }
+
     componentDidMount() {
         if (Platform.OS === 'web') {
             window.$clamp(document.getElementById(this.props.article.id), { clamp: 4 });
         }
+    }
+
+    getTitle() {
+        const entities = require('html-entities').Html5Entities;
+        return entities.decode(this.props.article.title_plain);
     }
 
     getExcerpt() {
@@ -110,4 +124,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ArticleItemComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(withNavigation(ArticleItemComponent));

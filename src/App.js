@@ -3,6 +3,7 @@ import ReactNative from 'react-native'
 import { Provider } from "react-redux";
 import store from "./utilities/storage/store";
 import EntryScreen from './screens/EntryScreen';
+import ArticleScreen from './screens/ArticleScreen';
 import { createStackNavigator } from 'react-navigation';
 import { applogo } from './assets';
 
@@ -11,12 +12,25 @@ const RootStack = createStackNavigator({
     Home: {
         screen: EntryScreen,
         navigationOptions: ({ navigation }) => ({
-            title: 'WindowsBlogItalia',
+            title: 'Articoli',
             headerStyle: { backgroundColor: '#238E9A' },
+            headerTintColor: 'white',
+            headerTitle: (props) => (<ReactNative.View style={styles.container}>
+                <ReactNative.Image style={styles.image} source={applogo} />
+                <ReactNative.Text style={styles.title}>{props.children}</ReactNative.Text>
+            </ReactNative.View>)
+        }),
+    },
+    Article: {
+        screen: ArticleScreen,
+        navigationOptions: ({ navigation }) => ({
+            title: '',
+            headerStyle: { backgroundColor: '#238E9A' },
+            headerTintColor: 'white',
             headerTitle: <ReactNative.View style={styles.container}>
-                            <ReactNative.Image style={styles.image} source={applogo} />
-                            <ReactNative.Text style={styles.title}>WindowsBlogItalia</ReactNative.Text>
-                         </ReactNative.View>
+                <ReactNative.Image style={styles.image} source={applogo} />
+                <ReactNative.Text style={styles.title}>{navigation.state.params.title}</ReactNative.Text>
+            </ReactNative.View>
         }),
     },
 }, {
