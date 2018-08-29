@@ -17,7 +17,7 @@ const RootStack = createStackNavigator({
             headerTintColor: 'white',
             headerTitle: (props) => (<ReactNative.View style={styles.container}>
                 <ReactNative.Image style={styles.image} source={applogo} />
-                <ReactNative.Text style={styles.title}>{props.children}</ReactNative.Text>
+                <ReactNative.Text numberOfLines={1} style={styles.title}>{props.children}</ReactNative.Text>
             </ReactNative.View>)
         }),
     },
@@ -29,13 +29,13 @@ const RootStack = createStackNavigator({
             headerTintColor: 'white',
             headerTitle: <ReactNative.View style={styles.container}>
                 <ReactNative.Image style={styles.image} source={applogo} />
-                <ReactNative.Text style={styles.title}>{navigation.state.params.title}</ReactNative.Text>
+                <ReactNative.Text numberOfLines={1} style={styles.title}>{navigation.state.params.title}</ReactNative.Text>
             </ReactNative.View>
         }),
     },
 }, {
         initialRouteName: 'Home',
-        headerMode: ReactNative.Platform.OS === 'web' ? 'float' : 'none',
+        headerMode: ReactNative.Platform.OS !== 'windows' ? 'float' : 'none',
         headerLayoutPreset: 'left',
         cardStyle: { backgroundColor: 'white' }
     });
