@@ -7,20 +7,26 @@ import {
     Text,
     View,
     FlatList,
-    ActivityIndicator
+    ActivityIndicator,
+    RefreshControl
 } from 'react-native';
 import { ResponsiveComponent, ResponsiveStyleSheet } from "react-native-responsive-ui";
 
 
 class ArticleListComponent extends ResponsiveComponent {
+    static defaultProps = {
+        refreshing: false
+    };
+    
     constructor(props, context) {
         super(props, context);
-        this.state = { ...this.state, page: 1 };
-        this.handleLoadMore = this.handleLoadMore.bind(this);
+        this.state = { ...this.state, page: 1 };        
+        this.onLoadMore = this.onLoadMore.bind(this);
+        this.onRefresh = this.onRefresh.bind(this);
     }
 
     componentDidMount() {
-        this.props.loadArticles({ page: this.state.page })
+        this.props.fetchArticles({ page: this.state.page })
     }
 
     componentWillReceiveProps(nextProps) {
@@ -41,15 +47,25 @@ class ArticleListComponent extends ResponsiveComponent {
                     numColumns={1}
                     ListFooterComponent={this.renderFooter}
                     renderItem={({ item }) => <ArticleItemComponent article={item} />}
-                    onEndReached={this.handleLoadMore}
-                    onEndThreshold={0} />
+                    onEndReached={this.onLoadMore}
+                    onEndThreshold={0}
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={this.props.refreshing}
+                            onRefresh={this.onRefresh} />}
+                />
             </View>
         );
     }
 
-    handleLoadMore() {
+    onLoadMore() {
         this.setState({ page: this.state.page + 1 },
-            () => this.props.loadArticles({ page: this.state.page }))
+            () => this.props.fetchArticles({ page: this.state.page }))
+    }
+
+    onRefresh = () => {
+        this.setState({ page: 1 },
+            () => this.props.refreshArticles({ page: this.state.page }))
     }
 
     renderFooter = () => {
@@ -112,6 +128,7 @@ function mapStateToProps(state, ownProps) {
         articles: state.articleReducer.articles,
         error: state.articleReducer.error,
         selected: state.articleReducer.selected,
+        refreshing: state.articleReducer.isloading,
     }
 }
 
@@ -120,8 +137,11 @@ function mapDispatchToProps(dispatch) {
         onArticleClicked(article) {
             dispatch(ArticleActions.selectArticle(article))
         },
-        loadArticles(args) {
+        fetchArticles(args) {
             dispatch(ArticleActions.fetchArticles(args))
+        },
+        refreshArticles(args) {
+            dispatch(ArticleActions.refreshArticles(args))
         }
     }
 }

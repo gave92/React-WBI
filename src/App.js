@@ -12,7 +12,7 @@ const RootStack = createStackNavigator({
     Home: {
         screen: EntryScreen,
         navigationOptions: ({ navigation }) => ({
-            title: 'Articoli',
+            title: 'WindowsBlogItalia',
             headerStyle: { backgroundColor: '#238E9A' },
             headerTintColor: 'white',
             headerTitle: (props) => (<ReactNative.View style={styles.container}>

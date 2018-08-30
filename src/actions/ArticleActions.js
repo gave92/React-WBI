@@ -1,9 +1,6 @@
 import axios from 'react-native-axios';
 import * as types from "./ActionTypes";
 
-// This is a dumb action just for wire framing purpose
-// All your login and processing should go in actions, the should be thick
-// example: make a network request, and dispatch the received payload to redux store
 
 export function fetchArticles(args) {
     return (dispatch) => {
@@ -13,6 +10,25 @@ export function fetchArticles(args) {
             dispatch({type: types.ARTICLES_FETCHED, data: response.data, articles: response.data.posts})
         })
         .catch(error => {
+            dispatch({type: types.ARTICLES_FETCHING_ERROR, error: error.message})
+        })
+        
+        // let obj = require('./../assets/OfflineArticles.json')
+        // dispatch({ type: types.ARTICLES_FETCHED, data: obj, articles: obj.posts })
+    }
+}
+
+export function refreshArticles(args) {
+    return (dispatch) => {
+        dispatch({type: types.GUI_IS_LOADING, isloading: true})
+        axios.get(`https://www.windowsblogitalia.com/?json=1&count=20&page=${args.page}`)
+        //fetch(`https://www.windowsblogitalia.com/?json=1&count=20&page=${args.page}`)
+        .then(response => {
+            dispatch({type: types.GUI_IS_LOADING, isloading: false})
+            dispatch({type: types.ARTICLES_REFRESHED, data: response.data, articles: response.data.posts})
+        })
+        .catch(error => {
+            dispatch({type: types.GUI_IS_LOADING, isloading: false})
             dispatch({type: types.ARTICLES_FETCHING_ERROR, error: error.message})
         })
         
