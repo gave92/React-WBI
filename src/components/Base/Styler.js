@@ -10,11 +10,13 @@ if (!String.format) {
     };
 }
 if (!String.prototype.remove) {
+    // eslint-disable-next-line
     String.prototype.remove = function (start, end) {
         return this.slice(0, start) + this.slice(start + end);
     };
 }
 if (!String.prototype.insert) {
+    // eslint-disable-next-line
     String.prototype.insert = function (start, str) {
         return this.slice(0, start) + str + this.slice(start);
     };
