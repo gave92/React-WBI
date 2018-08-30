@@ -5,7 +5,7 @@ import {
     View,
 } from 'react-native';
 
-import WebViewComponent from './Base/WebViewComponent';
+import WebViewComponent from './Base/WebView/WebViewComponent';
 import Styler from './Base/Styler';
 
 class ArticleDetailComponent extends React.Component {

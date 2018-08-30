@@ -69,7 +69,7 @@ class ArticleListComponent extends ResponsiveComponent {
     get ui() {
         return ResponsiveStyleSheet.select([
             {
-                query: { maxWidth: 700 },
+                query: { minWidth: 0 },
                 style: {
                     container: {
                         display: 'flex',
@@ -89,7 +89,7 @@ class ArticleListComponent extends ResponsiveComponent {
                         flexShrink: 0,
                         flexGrow: 0,
                         width: '30%',
-                        maxWidth: 320,
+                        maxWidth: 700,
                         minWidth: 270,
                         height: '100%',
                         backgroundColor: '#E9E9EF'

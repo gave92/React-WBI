@@ -6,11 +6,11 @@ import {
     Text,
     View,
     Image,
-    TouchableOpacity,
-    Platform
+    TouchableOpacity,    
 } from 'react-native';
 import { ResponsiveComponent, ResponsiveStyleSheet } from "react-native-responsive-ui";
 import Card from './Base/Elements/Card/Card'
+import { TextView } from './Base/TextView'
 import { withNavigation } from 'react-navigation';
 
 var DomParser = require('react-native-html-parser').DOMParser;
@@ -33,7 +33,10 @@ class ArticleItemComponent extends ResponsiveComponent {
                             style={ui.image} />
                         <View style={{ marginLeft: 6, flexShrink: 1, display: 'flex' }}>
                             <Text style={styles.biggerText}>{this.getTitle()}</Text>
-                            <Text id={this.props.article.id} ellipsizeMode='tail' numberOfLines={3}>{this.getExcerpt()}</Text>
+                            <TextView id={this.props.article.id} 
+                                      ellipsizeMode='tail' numberOfLines={3}>
+                                      {this.getExcerpt()}
+                            </TextView>
                         </View>
                     </View>
                 </Card>
@@ -45,12 +48,6 @@ class ArticleItemComponent extends ResponsiveComponent {
         this.props.onArticleClicked(this.props.article);
         if (this.state.window && this.state.window.width < 700) {            
             this.props.navigation.navigate('Article', { title: this.getTitle() })
-        }
-    }
-
-    componentDidMount() {
-        if (Platform.OS === 'web') {
-            window.$clamp(document.getElementById(this.props.article.id), { clamp: 4 });
         }
     }
 
@@ -98,7 +95,18 @@ class ArticleItemComponent extends ResponsiveComponent {
                         width: '100%', height: 120
                     }
                 }
-            }
+            },
+            {
+                query: { minWidth: 1300 },
+                style: {
+                    container: {
+                        display: 'flex', flexDirection: 'row'
+                    },
+                    image: {
+                        width: 120, height: 120
+                    }
+                }
+            },
         ]);
     }
 }
