@@ -31,7 +31,7 @@ class ArticleItemComponent extends ResponsiveComponent {
                     <View style={ui.container}>
                         <Image source={{ uri: this.props.article.thumbnail_images.hometile.url }}
                             style={ui.image} />
-                        <View style={{ marginLeft: 6, flexShrink: 1, display: 'flex' }}>
+                        <View style={ui.textcontainer}>
                             <Text style={styles.biggerText}>{this.getTitle()}</Text>
                             <TextView id={this.props.article.id} 
                                       ellipsizeMode='tail' numberOfLines={3}>
@@ -69,6 +69,9 @@ class ArticleItemComponent extends ResponsiveComponent {
                     container: {
                         display: 'flex', flexDirection: 'column'
                     },
+                    textcontainer : {
+                        flexShrink: 1, display: 'flex', marginLeft: 0
+                    },
                     image: {
                         width: '100%', height: 120
                     }
@@ -79,6 +82,9 @@ class ArticleItemComponent extends ResponsiveComponent {
                 style: {
                     container: {
                         display: 'flex', flexDirection: 'row'
+                    },
+                    textcontainer : {
+                        flexShrink: 1, display: 'flex', marginLeft: 6
                     },
                     image: {
                         width: 120, height: 120
@@ -91,6 +97,9 @@ class ArticleItemComponent extends ResponsiveComponent {
                     container: {
                         display: 'flex', flexDirection: 'column'
                     },
+                    textcontainer : {
+                        flexShrink: 1, display: 'flex', marginLeft: 0
+                    },
                     image: {
                         width: '100%', height: 120
                     }
@@ -101,6 +110,9 @@ class ArticleItemComponent extends ResponsiveComponent {
                 style: {
                     container: {
                         display: 'flex', flexDirection: 'row'
+                    },
+                    textcontainer : {
+                        flexShrink: 1, display: 'flex', marginLeft: 6
                     },
                     image: {
                         width: 120, height: 120
