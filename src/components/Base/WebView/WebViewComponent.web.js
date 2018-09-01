@@ -19,7 +19,7 @@ class WebViewComponent extends Component {
     if (!source.method) return;
 
     if (newWindow) {
-      
+
     } else {
       this.handleSourceInIFrame(source);
     }
@@ -91,7 +91,7 @@ class WebViewComponent extends Component {
 
     const { title, source, scrollEnabled } = this.props;
     const styleObj = StyleSheet.flatten(this.props.style);
-    
+
     return createElement('iframe', {
       title,
       ref: this.setRef,

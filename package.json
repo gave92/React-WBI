@@ -21,6 +21,7 @@
     "react-native-axios": "^0.17.1",
     "react-native-html-parser": "https://github.com/g6ling/react-native-html-parser.git",
     "react-native-responsive-ui": "https://github.com/wcandillon/react-native-responsive-ui.git",
+    "react-native-vector-icons": "^5.0.0",
     "react-native-web": "0.8.9",
     "react-native-windows": "0.55.0-rc.0",
     "react-navigation": "^2.12.1",

@@ -12,7 +12,7 @@ export function getResponsiveStyle(theme) {
                     flexGrow: 0,
                     width: '100%',
                     height: '100%',
-                    backgroundColor: '#E9E9EF'
+                    // backgroundColor: '#E9E9EF'
                 },
                 biggerText: {
                     fontSize: 14,

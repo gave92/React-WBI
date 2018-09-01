@@ -16,9 +16,19 @@ export function getResponsiveStyle(theme) {
                 },
                 detail: {
                     display: 'flex',
-                    flexShrink: 0,
+                    flexShrink: 1,
                     flexGrow: 1,
+                    flexBasis: 0,
                     height: '100%',
+                },
+                leftbar: {
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    width: 48,
+                    paddingTop: 48,
+                    height: '100%',
+                    // backgroundColor: '#238E9A'
                 }
             }
         },
@@ -26,6 +36,9 @@ export function getResponsiveStyle(theme) {
             query: { theme: 'dark' },
             style: {
                 container: {
+                    backgroundColor: 'black',
+                },
+                leftbar: {
                     backgroundColor: 'black',
                 }
             }

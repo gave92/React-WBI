@@ -27,6 +27,7 @@ export class Display extends ResponsiveComponent {
                 left: 0,
                 height: 0,
                 width: 0,
+                display: 'none'
             }
         }
     }

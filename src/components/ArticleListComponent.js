@@ -12,6 +12,7 @@ import {
 import { ResponsiveComponent } from "react-native-responsive-ui";
 import withTheme from "./Base/ThemableComponent";
 import { getResponsiveStyle } from './../styles/ArticleListComponent.style'
+import Divider from './Base/Elements/divider/Divider';
 
 
 class ArticleListComponent extends ResponsiveComponent {
@@ -42,6 +43,10 @@ class ArticleListComponent extends ResponsiveComponent {
         const ui = getResponsiveStyle(this.props.theme);
         return (
             <View style={ui.container}>
+                <View style={{ height: 48, backgroundColor: 'white' }}>
+                    <Text style={{ fontSize: 20, fontWeight: 600, marginTop: 'auto', marginBottom: 'auto', marginLeft: 6 }}>Articoli</Text>
+                </View>
+                <Divider />
                 {this.props.error ?
                     <Text style={ui.biggerText}>{JSON.stringify(this.props.error, null, 2)}</Text> :
                     <FlatList data={this.props.articles}

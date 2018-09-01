@@ -3,7 +3,7 @@
  */
 import * as types from "../actions/ActionTypes";
 
-const initialState = { theme: 'dark' };
+const initialState = { theme: 'default' };
 
 export default function settingsReducer(state = initialState, action) {
     switch (action.type) {

@@ -6,8 +6,9 @@ import {
 export default StyleSheet.create({
     container: {
         display: 'flex',
-        flexShrink: 0,
+        flexShrink: 1,
         flexGrow: 1,
+        flexBasis: 0,
         height: '100%',
     }
 });

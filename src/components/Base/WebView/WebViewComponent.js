@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, WebView } from 'react-native';
+import { StyleSheet, View, ActivityIndicator, WebView } from 'react-native';
 
 class WebViewComponent extends Component {
   static defaultProps = {
@@ -19,7 +19,7 @@ class WebViewComponent extends Component {
     if (!source.method) return;
 
     if (newWindow) {
-      
+
     } else {
       this.handleSourceInIFrame(source);
     }
@@ -86,7 +86,7 @@ class WebViewComponent extends Component {
     const styleObj = StyleSheet.flatten(this.props.style);
     return (<WebView
       ref={this.setRef}
-      source={{html: this.handleInjectedJavaScript(this.state.html || source.html)}}
+      source={{ html: this.handleInjectedJavaScript(this.state.html || source.html) }}
       style={[styles.iframe, scrollEnabled && styles.noScroll]} />
     );
   }
