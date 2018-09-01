@@ -11,4 +11,4 @@ STYLE:
 
 FILE: .\node_modules\react-navigation-stack\dist\views\Header\Header.js
 STYLE:
-	const TITLE_OFFSET_LEFT_ALIGN = Platform.OS === 'web' ? 20 : Platform.OS === 'ios' ? 20 : 56;
+	const TITLE_OFFSET_LEFT_ALIGN = 20;

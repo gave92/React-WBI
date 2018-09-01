@@ -6,6 +6,7 @@ import EntryScreen from './screens/EntryScreen';
 import ArticleScreen from './screens/ArticleScreen';
 import { createStackNavigator } from 'react-navigation';
 import { applogo } from './assets';
+import styles from './styles/App.style'
 
 
 const RootStack = createStackNavigator({
@@ -40,24 +41,6 @@ const RootStack = createStackNavigator({
         cardStyle: { backgroundColor: 'white' }
     });
 
-const styles = ReactNative.StyleSheet.create({
-    container: {
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    image: {
-        marginRight: 4,
-        marginLeft: 16,
-        width: 50,
-        height: 50
-    },
-    title: {
-        fontSize: 20,
-        fontWeight: '500',
-        color: 'white'
-    },
-});
 
 class App extends React.Component {
     render() {

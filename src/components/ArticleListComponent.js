@@ -3,7 +3,6 @@ import ArticleItemComponent from './../components/ArticleItemComponent'
 import * as ArticleActions from './../actions/ArticleActions';
 import { connect } from "react-redux";
 import {
-    StyleSheet,
     Text,
     View,
     FlatList,
