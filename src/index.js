@@ -5,14 +5,19 @@ import App from './App';
 
 // Generate required css
 import Octicons from 'react-native-vector-icons/Fonts/Octicons.ttf';
-import Feather from 'react-native-vector-icons/Fonts/Feather.ttf';
+import Simple from 'react-native-vector-icons/Fonts/SimpleLineIcons.ttf';
+import Material from 'react-native-vector-icons/Fonts/MaterialIcons.ttf';
 const iconFontStyles = `@font-face {
   src: url(${Octicons});
   font-family: Octicons;
 }
 @font-face {
-  src: url(${Feather});
-  font-family: Feather;
+  src: url(${Simple});
+  font-family: SimpleLineIcons;
+}
+@font-face {
+  src: url(${Material});
+  font-family: MaterialIcons;
 }`;
 
 // Create stylesheet

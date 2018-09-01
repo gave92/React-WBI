@@ -1,11 +1,11 @@
 import React from 'react';
-import ReactNative from 'react-native'
+// import ReactNative from 'react-native'
 import { Provider } from "react-redux";
 import store from "./utilities/storage/store";
 import EntryScreen from './screens/EntryScreen';
 import ArticleScreen from './screens/ArticleScreen';
 import { createStackNavigator } from 'react-navigation';
-import styles from './styles/App.style'
+// import styles from './styles/App.style'
 
 
 const RootStack = createStackNavigator({

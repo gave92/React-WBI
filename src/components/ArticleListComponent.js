@@ -12,7 +12,7 @@ import {
     TouchableOpacity
 } from 'react-native';
 import IconOcticons from 'react-native-vector-icons/Octicons';
-import IconFeather from 'react-native-vector-icons/Feather';
+import IconSimple from 'react-native-vector-icons/SimpleLineIcons';
 import { ResponsiveComponent } from "react-native-responsive-ui";
 import withTheme from "./Base/ThemableComponent";
 import { getResponsiveStyle } from './../styles/ArticleListComponent.style'
@@ -58,7 +58,7 @@ class ArticleListComponent extends ResponsiveComponent {
                     </TouchableOpacity>
                     <Text numberOfLines={1} style={{ fontSize: 18, fontWeight: '600', marginLeft: 'auto', marginRight: 'auto', marginTop: 'auto', marginBottom: 'auto' }}>Articoli</Text>
                     <TouchableOpacity>
-                        <IconFeather name="settings" size={24} color="#238E9A"
+                        <IconSimple name="settings" size={24} color="#238E9A"
                             style={{ margin: 12 }} />
                     </TouchableOpacity>
                 </View>

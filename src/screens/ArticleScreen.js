@@ -5,7 +5,7 @@ import {
 import { responsive } from "react-native-responsive-ui";
 import ArticleDetailComponent from './../components/ArticleDetailComponent'
 import withTheme from "./../components/Base/ThemableComponent";
-import { getResponsiveStyle } from './../styles/ArticleListComponent.style'
+import { getResponsiveStyle } from './../styles/ArticleScreen.style'
 
 
 class ArticleScreen extends React.Component {
