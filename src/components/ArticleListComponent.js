@@ -56,7 +56,7 @@ class ArticleListComponent extends ResponsiveComponent {
                         <IconOcticons name="three-bars" size={24} color="#238E9A"
                             style={{ margin: 12 }} />
                     </TouchableOpacity>
-                    <Text numberOfLines={1} style={{ fontSize: 18, fontWeight: '600', marginLeft: 'auto', marginRight: 'auto', marginTop: 'auto', marginBottom: 'auto' }}>Articoli</Text>
+                    <Text numberOfLines={1} style={{ fontSize: 18, fontWeight: '600', marginLeft: 'auto', marginRight: 'auto', marginTop: 'auto', marginBottom: 'auto' }}>WindowsBlogItalia</Text>
                     <TouchableOpacity>
                         <IconSimple name="settings" size={24} color="#238E9A"
                             style={{ margin: 12 }} />
@@ -64,7 +64,7 @@ class ArticleListComponent extends ResponsiveComponent {
                 </View>
 
                 {this.props.error ?
-                    <Text style={ui.biggerText}>{JSON.stringify(this.props.error, null, 2)}</Text> :
+                    <Text style={[ui.biggerText, { marginLeft: 'auto', marginRight: 'auto', marginTop: 'auto', marginBottom: 'auto' }]}>{this.props.error}</Text> :
                     <FlatList data={this.props.articles}
                         keyExtractor={(item, index) => item.id.toString()}
                         numColumns={1}
