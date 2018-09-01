@@ -5,13 +5,14 @@ import {
     Text,
     View,
     Image,
-    TouchableOpacity,    
+    TouchableOpacity,
 } from 'react-native';
 import { ResponsiveComponent } from "react-native-responsive-ui";
 import Card from './Base/Elements/Card/Card'
 import { TextView } from './Base/TextView'
 import { withNavigation } from 'react-navigation';
-import styles, { getResponsiveStyle } from './../styles/ArticleItemComponent.style'
+import withTheme from "./Base/ThemableComponent";
+import { getResponsiveStyle } from './../styles/ArticleItemComponent.style'
 
 var DomParser = require('react-native-html-parser').DOMParser;
 
@@ -24,18 +25,19 @@ class ArticleItemComponent extends ResponsiveComponent {
     }
 
     render() {
-        const ui = getResponsiveStyle();
+        const ui = getResponsiveStyle(this.props.theme);
         return (
             <TouchableOpacity onPress={this.onArticleClicked}>
-                <Card containerStyle={{ margin: 6, opacity: this.props.selected ? 0.4 : 1 }}>
+                <Card containerStyle={[ui.card, { opacity: this.props.selected ? 0.4 : 1 }]}>
                     <View style={ui.container}>
                         <Image source={{ uri: this.props.article.thumbnail_images.hometile.url }}
                             style={ui.image} />
                         <View style={ui.textcontainer}>
-                            <Text style={styles.biggerText}>{this.getTitle()}</Text>
-                            <TextView id={this.props.article.id} 
-                                      ellipsizeMode='tail' numberOfLines={3}>
-                                      {this.getExcerpt()}
+                            <Text style={ui.biggerText}>{this.getTitle()}</Text>
+                            <TextView id={this.props.article.id}
+                                style={ui.text}
+                                ellipsizeMode='tail' numberOfLines={3}>
+                                {this.getExcerpt()}
                             </TextView>
                         </View>
                     </View>
@@ -46,7 +48,7 @@ class ArticleItemComponent extends ResponsiveComponent {
 
     onArticleClicked() {
         this.props.onArticleClicked(this.props.article);
-        if (this.state.window && this.state.window.width < 700) {            
+        if (this.state.window && this.state.window.width < 700) {
             this.props.navigation.navigate('Article', { title: this.getTitle() })
         }
     }
@@ -76,4 +78,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withNavigation(ArticleItemComponent));
+export default connect(mapStateToProps, mapDispatchToProps)(withNavigation(withTheme(ArticleItemComponent)));

@@ -5,15 +5,10 @@ import {
 import { MediaQuerySelector, MediaQuery as IMediaQuery } from "react-native-responsive-ui";
 import { ResponsiveComponent } from "react-native-responsive-ui";
 
-interface MediaQueryProps extends IMediaQuery {
-    children?: React$Element<*>
-}
 
 export class Display extends ResponsiveComponent {
 
-    props: MediaQueryProps;
-
-    render(): ?React$Element<*> {
+    render() {
         const { width, height } = this.state.window;
         const val = MediaQuerySelector.query(this.props, width, height);
 

@@ -5,3 +5,4 @@ export const ARTICLES_FETCHING_ERROR = 'articles.ARTICLES_FETCHING_ERROR';
 export const ARTICLES_REFRESHED = "articles.ARTICLES_REFRESHED";
 export const GUI_ARTICLE_SELECTED = "gui.GUI_ARTICLE_SELECTED";
 export const GUI_IS_LOADING = "gui.GUI_IS_LOADING";
+export const GUI_SET_THEME = "gui.GUI_SET_THEME";
