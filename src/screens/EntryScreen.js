@@ -1,11 +1,11 @@
 import React from 'react';
 import {
-    StyleSheet,
     View,
 } from 'react-native';
 import { Display } from "./../components/Base/Display";
 import ArticleListComponent from './../components/ArticleListComponent'
 import ArticleDetailComponent from './../components/ArticleDetailComponent'
+import styles from './../styles/EntryScreen.style'
 
 
 class EntryScreen extends React.Component {
@@ -26,21 +26,5 @@ class EntryScreen extends React.Component {
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        display: 'flex',
-        flexDirection: 'row',
-        height: '100%',
-        width: '100%',
-        overflow: 'hidden'
-    },
-    detail: {
-        display: 'flex',
-        flexShrink: 0,
-        flexGrow: 1,
-        height: '100%',
-    }
-});
 
 export default EntryScreen;

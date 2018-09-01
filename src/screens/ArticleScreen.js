@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-    StyleSheet,
     View,
 } from 'react-native';
-import ArticleDetailComponent from './../components/ArticleDetailComponent'
 import { responsive } from "react-native-responsive-ui";
+import ArticleDetailComponent from './../components/ArticleDetailComponent'
+import styles from './../styles/ArticleScreen.style'
 
 
 class ArticleScreen extends React.Component {
@@ -30,15 +30,5 @@ class ArticleScreen extends React.Component {
         }
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        display: 'flex',
-        flexDirection: 'row',
-        height: '100%',
-        width: '100%',
-        overflow: 'hidden'
-    },
-});
 
 export default responsive(ArticleScreen);

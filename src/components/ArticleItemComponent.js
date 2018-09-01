@@ -2,16 +2,16 @@ import * as ArticleActions from './../actions/ArticleActions';
 import { connect } from "react-redux";
 import React from 'react';
 import {
-    StyleSheet,
     Text,
     View,
     Image,
     TouchableOpacity,    
 } from 'react-native';
-import { ResponsiveComponent, ResponsiveStyleSheet } from "react-native-responsive-ui";
+import { ResponsiveComponent } from "react-native-responsive-ui";
 import Card from './Base/Elements/Card/Card'
 import { TextView } from './Base/TextView'
 import { withNavigation } from 'react-navigation';
+import styles, { getResponsiveStyle } from './../styles/ArticleItemComponent.style'
 
 var DomParser = require('react-native-html-parser').DOMParser;
 
@@ -24,9 +24,9 @@ class ArticleItemComponent extends ResponsiveComponent {
     }
 
     render() {
-        const { ui } = this;
+        const ui = getResponsiveStyle();
         return (
-            <TouchableOpacity onPress={() => this.onArticleClicked()}>
+            <TouchableOpacity onPress={this.onArticleClicked}>
                 <Card containerStyle={{ margin: 6, opacity: this.props.selected ? 0.4 : 1 }}>
                     <View style={ui.container}>
                         <Image source={{ uri: this.props.article.thumbnail_images.hometile.url }}
@@ -60,75 +60,7 @@ class ArticleItemComponent extends ResponsiveComponent {
         let doc = new DomParser().parseFromString(this.props.article.excerpt, 'text/html')
         return doc.firstChild.textContent;
     }
-
-    get ui() {
-        return ResponsiveStyleSheet.select([
-            {
-                query: { minWidth: 0 },
-                style: {
-                    container: {
-                        display: 'flex', flexDirection: 'column'
-                    },
-                    textcontainer : {
-                        flexShrink: 1, display: 'flex', marginLeft: 0
-                    },
-                    image: {
-                        width: '100%', height: 120
-                    }
-                }
-            },
-            {
-                query: { minWidth: 400 },
-                style: {
-                    container: {
-                        display: 'flex', flexDirection: 'row'
-                    },
-                    textcontainer : {
-                        flexShrink: 1, display: 'flex', marginLeft: 6
-                    },
-                    image: {
-                        width: 120, height: 120
-                    }
-                }
-            },
-            {
-                query: { minWidth: 700 },
-                style: {
-                    container: {
-                        display: 'flex', flexDirection: 'column'
-                    },
-                    textcontainer : {
-                        flexShrink: 1, display: 'flex', marginLeft: 0
-                    },
-                    image: {
-                        width: '100%', height: 120
-                    }
-                }
-            },
-            {
-                query: { minWidth: 1300 },
-                style: {
-                    container: {
-                        display: 'flex', flexDirection: 'row'
-                    },
-                    textcontainer : {
-                        flexShrink: 1, display: 'flex', marginLeft: 6
-                    },
-                    image: {
-                        width: 120, height: 120
-                    }
-                }
-            },
-        ]);
-    }
 }
-
-const styles = StyleSheet.create({
-    biggerText: {
-        fontSize: 14,
-        fontWeight: '700'
-    }
-});
 
 function mapStateToProps(state, ownProps) {
     return {
