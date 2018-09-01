@@ -27,12 +27,12 @@ class Styler {
     constructor() {
         this.CommentsStart = "DISQUSWIDGETS.displayCount(";
         this.CommentsEnd = ")";
-        this.PostContent = "<html><head><meta name=\"viewport\" content=\"initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0\"><style>img{max-width:100%; height: auto;}html {-ms-text-size-adjust: 300%;}body {color: {3};font-family: 'Segoe UI';text-align: justify;display: block;margin: 6px;}.embed-youtube {position:relative; padding-top: 56.25%;}.embed-youtube iframe {position:absolute;top:0;left:0;width:100%; height:100%;}</style></head><body>{0}</body><script>{1}</script><script>{2}</script></html>";
+        this.PostContent = "<html><head><meta name=\"viewport\" content=\"initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0\"><style>img{max-width:100%; height: auto;}html {-ms-text-size-adjust: 300%;}body {background-color: {3};color: {4};font-family: 'Segoe UI';text-align: justify;display: block;margin: 6px;}.embed-youtube {position:relative; padding-top: 56.25%;}.embed-youtube iframe {position:absolute;top:0;left:0;width:100%; height:100%;}</style></head><body>{0}</body><script>{1}</script><script>{2}</script></html>";
         this.RetargetLinks = "window.onload = function() { var anchors = document.getElementsByTagName(\"a\");for (var i = 0; i<anchors.length; i++) { if(anchors[i].getAttribute('target') !== null) { anchors[i].setAttribute('target', '_self'); } } }";
         this.ResizeText = "var who=document.createElement('div');who.style.visibility='hidden';document.body.appendChild(who);who.appendChild(document.createTextNode('MG'));var fontsize = (who.offsetHeight/21).toFixed(2)+'em';document.body.removeChild(who);var s = document.createElement('style');s.setAttribute('type', 'text/css');var css = 'li {font-size: ' + fontsize + ';}';s.appendChild(document.createTextNode(css));document.head.appendChild(s);";
     };
 
-    ApplyStyle(content) {
+    ApplyStyle(content, theme) {
         var style = this.PostContent;
         var source = content;
 
@@ -116,7 +116,10 @@ class Styler {
 
         }
 
-        source = String.format(style, source, this.RetargetLinks, "", "black");
+        source = String.format(style, source,
+            this.RetargetLinks, "",
+            theme === 'dark' ? "black" : "white",
+            theme === 'dark' ? "white" : "black");
 
         return source;
     }

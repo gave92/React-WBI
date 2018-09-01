@@ -10,7 +10,8 @@ import {
     RefreshControl
 } from 'react-native';
 import { ResponsiveComponent } from "react-native-responsive-ui";
-import styles, { getResponsiveStyle } from './../styles/ArticleListComponent.style'
+import withTheme from "./Base/ThemableComponent";
+import { getResponsiveStyle } from './../styles/ArticleListComponent.style'
 
 
 class ArticleListComponent extends ResponsiveComponent {
@@ -38,11 +39,11 @@ class ArticleListComponent extends ResponsiveComponent {
     }
 
     render() {
-        const ui = getResponsiveStyle();
+        const ui = getResponsiveStyle(this.props.theme);
         return (
             <View style={ui.container}>
                 {this.props.error ?
-                    <Text style={styles.biggerText}>{JSON.stringify(this.props.error, null, 2)}</Text> :
+                    <Text style={ui.biggerText}>{JSON.stringify(this.props.error, null, 2)}</Text> :
                     <FlatList data={this.props.articles}
                         keyExtractor={(item, index) => item.id.toString()}
                         numColumns={1}
@@ -105,5 +106,5 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ArticleListComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(withTheme(ArticleListComponent));
 

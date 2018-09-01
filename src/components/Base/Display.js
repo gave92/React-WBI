@@ -2,8 +2,7 @@ import React from 'react';
 import {
     View,
 } from 'react-native';
-import { MediaQuerySelector, MediaQuery as IMediaQuery } from "react-native-responsive-ui";
-import { ResponsiveComponent } from "react-native-responsive-ui";
+import { ResponsiveComponent, MediaQuerySelector } from "react-native-responsive-ui";
 
 
 export class Display extends ResponsiveComponent {

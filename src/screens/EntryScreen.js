@@ -5,7 +5,8 @@ import {
 import { Display } from "./../components/Base/Display";
 import ArticleListComponent from './../components/ArticleListComponent'
 import ArticleDetailComponent from './../components/ArticleDetailComponent'
-import styles from './../styles/EntryScreen.style'
+import withTheme from "./../components/Base/ThemableComponent";
+import { getResponsiveStyle } from './../styles/EntryScreen.style'
 
 
 class EntryScreen extends React.Component {
@@ -15,11 +16,11 @@ class EntryScreen extends React.Component {
     }
 
     render() {
-
+        const ui = getResponsiveStyle(this.props.theme);
         return (
-            <View style={styles.container}>
+            <View style={ui.container}>
                 <ArticleListComponent />
-                <Display minWidth={700} enabledStyle={styles.detail}>
+                <Display minWidth={700} enabledStyle={ui.detail}>
                     <ArticleDetailComponent />
                 </Display>
             </View>
@@ -27,4 +28,4 @@ class EntryScreen extends React.Component {
     }
 }
 
-export default EntryScreen;
+export default withTheme(EntryScreen);

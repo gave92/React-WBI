@@ -1,11 +1,8 @@
-import {
-    StyleSheet,
-} from 'react-native';
-import { ResponsiveStyleSheet } from "react-native-responsive-ui";
+import ThemableStyleSheet from './../components/Base/ThemableStyleSheet';
 
 
-export function getResponsiveStyle() {
-    return ResponsiveStyleSheet.select([
+export function getResponsiveStyle(theme) {
+    return ThemableStyleSheet.select([
         {
             query: { minWidth: 0 },
             style: {
@@ -16,6 +13,9 @@ export function getResponsiveStyle() {
                     width: '100%',
                     height: '100%',
                     backgroundColor: '#E9E9EF'
+                },
+                biggerText: {
+                    fontSize: 14,
                 }
             },
         },
@@ -23,22 +23,22 @@ export function getResponsiveStyle() {
             query: { minWidth: 700 },
             style: {
                 container: {
-                    display: 'flex',
-                    flexShrink: 0,
-                    flexGrow: 0,
                     width: '30%',
                     maxWidth: 700,
                     minWidth: 270,
-                    height: '100%',
-                    backgroundColor: '#E9E9EF'
                 }
             },
-        }
-    ]);
+        },
+        {
+            query: { theme: 'dark' },
+            style: {
+                container: {
+                    backgroundColor: 'transparent'
+                },
+                biggerText: {
+                    color: 'white'
+                },
+            }
+        },
+    ], theme);
 }
-
-export default StyleSheet.create({
-    biggerText: {
-        fontSize: 14,
-    }
-});

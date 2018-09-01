@@ -4,7 +4,8 @@ import {
 } from 'react-native';
 import { responsive } from "react-native-responsive-ui";
 import ArticleDetailComponent from './../components/ArticleDetailComponent'
-import styles from './../styles/ArticleScreen.style'
+import withTheme from "./../components/Base/ThemableComponent";
+import { getResponsiveStyle } from './../styles/ArticleListComponent.style'
 
 
 class ArticleScreen extends React.Component {
@@ -14,9 +15,9 @@ class ArticleScreen extends React.Component {
     }
 
     render() {
-
+        const ui = getResponsiveStyle(this.props.theme);
         return (
-            <View style={styles.container}>
+            <View style={ui.container}>
                 <ArticleDetailComponent />
             </View>
         );
@@ -31,4 +32,4 @@ class ArticleScreen extends React.Component {
     }
 }
 
-export default responsive(ArticleScreen);
+export default withTheme(responsive(ArticleScreen));

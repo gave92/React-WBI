@@ -1,6 +1,3 @@
-import {
-    StyleSheet,
-} from 'react-native';
 import ThemableStyleSheet from './../components/Base/ThemableStyleSheet';
 
 
@@ -18,13 +15,15 @@ export function getResponsiveStyle(theme) {
                 image: {
                     width: '100%', height: 120
                 },
-                card : {
-                    margin: 6
+                card: {
+                    margin: 6,
+                    borderWidth: 1,
+                    backgroundColor: 'white',
                 },
                 biggerText: {
                     fontSize: 14,
                     fontWeight: '700'
-                },                
+                },
                 text: {
                 }
             }
@@ -75,7 +74,8 @@ export function getResponsiveStyle(theme) {
             query: { theme: 'dark' },
             style: {
                 card: {
-                    backgroundColor: 'black'
+                    backgroundColor: 'transparent',
+                    borderColor: '#333333'
                 },
                 biggerText: {
                     color: 'white'

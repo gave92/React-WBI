@@ -37,8 +37,7 @@ const RootStack = createStackNavigator({
 }, {
         initialRouteName: 'Home',
         headerMode: ReactNative.Platform.OS !== 'windows' ? 'float' : 'none',
-        headerLayoutPreset: 'left',
-        cardStyle: { backgroundColor: 'white' }
+        headerLayoutPreset: 'left'
     });
 
 
