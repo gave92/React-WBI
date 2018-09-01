@@ -7,6 +7,7 @@ import {
     View,
     FlatList,
     ActivityIndicator,
+    Platform,
     RefreshControl
 } from 'react-native';
 import { ResponsiveComponent } from "react-native-responsive-ui";
@@ -43,10 +44,15 @@ class ArticleListComponent extends ResponsiveComponent {
         const ui = getResponsiveStyle(this.props.theme);
         return (
             <View style={ui.container}>
+                {Platform.OS === 'windows' ?
+                    <View style={{ height: 36, backgroundColor: 'white' }}>
+                        <Text numberOfLines={1} style={{ fontSize: 12, fontWeight: '400', marginTop: 'auto', marginBottom: 'auto', marginLeft: 6 }}>WindowsBlogItalia</Text>
+                    </View> : null
+                }
                 <View style={{ height: 48, backgroundColor: 'white' }}>
-                    <Text style={{ fontSize: 20, fontWeight: 600, marginTop: 'auto', marginBottom: 'auto', marginLeft: 6 }}>Articoli</Text>
+                    <Text numberOfLines={1} style={{ fontSize: 18, fontWeight: '600', marginTop: 'auto', marginBottom: 'auto', marginLeft: 6 }}>Articoli</Text>
                 </View>
-                <Divider />
+
                 {this.props.error ?
                     <Text style={ui.biggerText}>{JSON.stringify(this.props.error, null, 2)}</Text> :
                     <FlatList data={this.props.articles}

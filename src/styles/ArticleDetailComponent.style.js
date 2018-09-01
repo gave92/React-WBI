@@ -9,6 +9,6 @@ export default StyleSheet.create({
         flexShrink: 1,
         flexGrow: 1,
         flexBasis: 0,
-        height: '100%',
+        height: '100%'
     }
 });

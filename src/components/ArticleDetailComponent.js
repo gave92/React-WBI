@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from "react-redux";
 import {
     View,
-    Text
+    Text,
+    Platform
 } from 'react-native';
 import WebViewComponent from './Base/WebView/WebViewComponent';
 import Styler from './Base/Styler';
@@ -22,10 +23,13 @@ class ArticleDetailComponent extends React.Component {
         return (
             this.props.article ?
                 <View style={styles.container}>
+                    {Platform.OS === 'windows' ?
+                        <View style={{ height: 36 }} /> : null
+                    }
                     <View style={{ height: 48, backgroundColor: 'white' }}>
-                        <Text numberOfLines={1} style={{ fontSize: 20, marginTop: 'auto', marginBottom: 'auto', marginLeft: 6 }}>{this.props.article.title_plain}</Text>
+                        <Text numberOfLines={1} style={{ fontSize: 18, marginTop: 'auto', marginBottom: 'auto', marginLeft: 6 }}>{this.props.article.title_plain}</Text>
                     </View>
-                    <Divider />
+
                     <WebViewComponent source={{ html: this.getHtml() }} />
                 </View> : null
         );

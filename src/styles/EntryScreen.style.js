@@ -26,9 +26,9 @@ export function getResponsiveStyle(theme) {
                     flexDirection: 'column',
                     alignItems: 'center',
                     width: 48,
-                    paddingTop: 48,
+                    paddingTop: 36,
                     height: '100%',
-                    // backgroundColor: '#238E9A'
+                    backgroundColor: '#238E9A'
                 }
             }
         },

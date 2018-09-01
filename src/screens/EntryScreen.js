@@ -23,18 +23,18 @@ class EntryScreen extends React.Component {
         const ui = getResponsiveStyle(this.props.theme);
         return (
             <View style={ui.container}>
-                <Display minWidth={700} enabledStyle={ui.leftbar}>
+                <Display minWidth={700} platform={'windows'} enabledStyle={ui.leftbar}>
                     <TouchableOpacity>
-                        <IconOcticons name="three-bars" size={24} color="black"
+                        <IconOcticons name="three-bars" size={24} color="white"
                             style={{ margin: 12 }} />
                     </TouchableOpacity>
                     <TouchableOpacity>
-                        <IconFeather name="home" size={24} color="black"
+                        <IconFeather name="home" size={24} color="white"
                             style={{ margin: 12 }} />
                     </TouchableOpacity>
                     <View style={{ flexGrow: 1 }} />
                     <TouchableOpacity>
-                        <IconFeather name="settings" size={24} color="black"
+                        <IconFeather name="settings" size={24} color="white"
                             style={{ margin: 12 }} />
                     </TouchableOpacity>
                 </Display>
