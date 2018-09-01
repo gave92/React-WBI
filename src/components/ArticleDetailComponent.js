@@ -9,7 +9,6 @@ import WebViewComponent from './Base/WebView/WebViewComponent';
 import Styler from './Base/Styler';
 import withTheme from "./Base/ThemableComponent";
 import styles from './../styles/ArticleDetailComponent.style'
-import Divider from './Base/Elements/divider/Divider';
 
 
 class ArticleDetailComponent extends React.Component {

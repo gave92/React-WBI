@@ -8,12 +8,14 @@ import {
     FlatList,
     ActivityIndicator,
     Platform,
-    RefreshControl
+    RefreshControl,
+    TouchableOpacity
 } from 'react-native';
+import IconOcticons from 'react-native-vector-icons/Octicons';
+import IconFeather from 'react-native-vector-icons/Feather';
 import { ResponsiveComponent } from "react-native-responsive-ui";
 import withTheme from "./Base/ThemableComponent";
 import { getResponsiveStyle } from './../styles/ArticleListComponent.style'
-import Divider from './Base/Elements/divider/Divider';
 
 
 class ArticleListComponent extends ResponsiveComponent {
@@ -49,8 +51,16 @@ class ArticleListComponent extends ResponsiveComponent {
                         <Text numberOfLines={1} style={{ fontSize: 12, fontWeight: '400', marginTop: 'auto', marginBottom: 'auto', marginLeft: 6 }}>WindowsBlogItalia</Text>
                     </View> : null
                 }
-                <View style={{ height: 48, backgroundColor: 'white' }}>
-                    <Text numberOfLines={1} style={{ fontSize: 18, fontWeight: '600', marginTop: 'auto', marginBottom: 'auto', marginLeft: 6 }}>Articoli</Text>
+                <View style={{ height: 48, display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                    <TouchableOpacity>
+                        <IconOcticons name="three-bars" size={24} color="#238E9A"
+                            style={{ margin: 12 }} />
+                    </TouchableOpacity>
+                    <Text numberOfLines={1} style={{ fontSize: 18, fontWeight: '600', marginLeft: 'auto', marginRight: 'auto', marginTop: 'auto', marginBottom: 'auto' }}>Articoli</Text>
+                    <TouchableOpacity>
+                        <IconFeather name="settings" size={24} color="#238E9A"
+                            style={{ margin: 12 }} />
+                    </TouchableOpacity>
                 </View>
 
                 {this.props.error ?

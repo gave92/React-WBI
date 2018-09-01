@@ -5,7 +5,6 @@ import store from "./utilities/storage/store";
 import EntryScreen from './screens/EntryScreen';
 import ArticleScreen from './screens/ArticleScreen';
 import { createStackNavigator } from 'react-navigation';
-import { applogo } from './assets';
 import styles from './styles/App.style'
 
 
@@ -15,11 +14,7 @@ const RootStack = createStackNavigator({
         navigationOptions: ({ navigation }) => ({
             title: 'WindowsBlogItalia',
             headerStyle: { backgroundColor: '#238E9A' },
-            headerTintColor: 'white',
-            headerTitle: (props) => (<ReactNative.View style={styles.container}>
-                <ReactNative.Image style={styles.image} source={applogo} />
-                <ReactNative.Text numberOfLines={1} style={styles.title}>{props.children}</ReactNative.Text>
-            </ReactNative.View>)
+            headerTintColor: 'white'
         }),
     },
     Article: {
@@ -27,16 +22,12 @@ const RootStack = createStackNavigator({
         navigationOptions: ({ navigation }) => ({
             title: '',
             headerStyle: { backgroundColor: '#238E9A' },
-            headerTintColor: 'white',
-            headerTitle: <ReactNative.View style={styles.container}>
-                <ReactNative.Image style={styles.image} source={applogo} />
-                <ReactNative.Text numberOfLines={1} style={styles.title}>{navigation.state.params.title}</ReactNative.Text>
-            </ReactNative.View>
+            headerTintColor: 'white'
         }),
     },
 }, {
         initialRouteName: 'Home',
-        headerMode: ReactNative.Platform.OS !== 'windows' ? 'float' : 'none',
+        headerMode: 'none',
         headerLayoutPreset: 'left'
     });
 

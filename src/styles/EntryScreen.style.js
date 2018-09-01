@@ -20,15 +20,6 @@ export function getResponsiveStyle(theme) {
                     flexGrow: 1,
                     flexBasis: 0,
                     height: '100%',
-                },
-                leftbar: {
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    width: 48,
-                    paddingTop: 36,
-                    height: '100%',
-                    backgroundColor: '#238E9A'
                 }
             }
         },

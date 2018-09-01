@@ -2,7 +2,9 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import ViewPropTypes from '../config/ViewPropTypes';
 
+
 class Divider extends React.Component {
+  // eslint-disable-next-line
   constructor(props, context) {
     super(props, context);
   }
