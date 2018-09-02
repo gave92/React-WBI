@@ -12,3 +12,11 @@ STYLE:
 FILE: .\node_modules\react-navigation-stack\dist\views\Header\Header.js
 STYLE:
 	const TITLE_OFFSET_LEFT_ALIGN = 20;
+
+Chrome developer tools
+FILE: .\node_modules\opn\index.js
+WIN32:
+    if (opts.app) {
+        let chrome_path = 'C:\\Users\\Marco\\Downloads\\Software\\GoogleChromePortable\\App\\Chrome-bin\\';
+	args.push(chrome_path + opts.app);
+    }

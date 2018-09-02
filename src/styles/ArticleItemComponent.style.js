@@ -22,9 +22,11 @@ export function getResponsiveStyle(theme) {
                 },
                 biggerText: {
                     fontSize: 14,
-                    fontWeight: '700'
+                    fontWeight: '700',
+                    color: 'black'
                 },
                 text: {
+                    color: 'black'
                 }
             }
         },

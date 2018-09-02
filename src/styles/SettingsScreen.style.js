@@ -7,11 +7,16 @@ export function getResponsiveStyle(theme) {
             query: { minWidth: 0 },
             style: {
                 container: {
+                    backgroundColor: 'white',
                     display: 'flex',
-                    flexShrink: 1,
-                    flexGrow: 1,
-                    flexBasis: 0,
-                    height: '100%'
+                    flexShrink: 0,
+                    flexGrow: 0,
+                    width: '100%',
+                    height: '100%',
+                },
+                appname: {
+                    fontSize: 12, fontWeight: '400', marginTop: 'auto', marginBottom: 'auto', marginLeft: 6,
+                    color: 'black'
                 },
                 topbar : {
                     height: 48, display: 'flex', flexDirection: 'row', alignItems: 'center'
@@ -27,23 +32,21 @@ export function getResponsiveStyle(theme) {
             }
         },
         {
-            query: { platoform: 'windows' },
-            style: {
-                container: {
-                    paddingTop: 36
-                }
-            }
-        },
-        {
             query: { theme: 'dark' },
             style: {
                 backbutton: {
                     color: "#238E9A"
                 },
-                title : {
+                title: {
                     color: 'white'
+                },
+                appname: {
+                    color: 'white'
+                },
+                container: {
+                    backgroundColor: 'black',
                 }
             }
-        }
-    ], theme)
+        },
+    ], theme);
 };

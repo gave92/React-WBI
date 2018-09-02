@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import store from "./utilities/storage/store";
 import EntryScreen from './screens/EntryScreen';
 import ArticleScreen from './screens/ArticleScreen';
+import SettingsScreen from './screens/SettingsScreen';
 import { createStackNavigator } from 'react-navigation';
 // import styles from './styles/App.style'
 
@@ -21,6 +22,14 @@ const RootStack = createStackNavigator({
         screen: ArticleScreen,
         navigationOptions: ({ navigation }) => ({
             title: '',
+            headerStyle: { backgroundColor: '#238E9A' },
+            headerTintColor: 'white'
+        }),
+    },
+    Settings: {
+        screen: SettingsScreen,
+        navigationOptions: ({ navigation }) => ({
+            title: 'Settings',
             headerStyle: { backgroundColor: '#238E9A' },
             headerTintColor: 'white'
         }),

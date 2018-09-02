@@ -11,9 +11,10 @@ import {
     RefreshControl,
     TouchableOpacity
 } from 'react-native';
+import { withNavigation } from 'react-navigation';
 import IconOcticons from 'react-native-vector-icons/Octicons';
 import IconSimple from 'react-native-vector-icons/SimpleLineIcons';
-import { ResponsiveComponent } from "react-native-responsive-ui";
+import { ResponsiveComponent, MediaQuery } from "react-native-responsive-ui";
 import withTheme from "./Base/ThemableComponent";
 import { getResponsiveStyle } from './../styles/ArticleListComponent.style'
 
@@ -28,6 +29,8 @@ class ArticleListComponent extends ResponsiveComponent {
         this.state = { ...this.state, page: 1 };
         this.onLoadMore = this.onLoadMore.bind(this);
         this.onRefresh = this.onRefresh.bind(this);
+        this.onHamburgerPressed = this.onHamburgerPressed.bind(this);
+        this.onSettingsPressed = this.onSettingsPressed.bind(this);
     }
 
     componentDidMount() {
@@ -46,25 +49,25 @@ class ArticleListComponent extends ResponsiveComponent {
         const ui = getResponsiveStyle(this.props.theme);
         return (
             <View style={ui.container}>
-                {Platform.OS === 'windows' ?
-                    <View style={{ height: 36, backgroundColor: 'white' }}>
-                        <Text numberOfLines={1} style={{ fontSize: 12, fontWeight: '400', marginTop: 'auto', marginBottom: 'auto', marginLeft: 6 }}>WindowsBlogItalia</Text>
-                    </View> : null
-                }
-                <View style={{ height: 48, display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                    <TouchableOpacity>
-                        <IconOcticons name="three-bars" size={24} color="#238E9A"
-                            style={{ margin: 12 }} />
+                <MediaQuery platform='windows'>
+                    <View style={{ height: 36 }}>
+                        <Text numberOfLines={1} style={ui.appname}>WindowsBlogItalia</Text>
+                    </View>
+                </MediaQuery>
+                <View style={ui.topbar}>
+                    <TouchableOpacity onPress={this.onHamburgerPressed}>
+                        <IconOcticons name="three-bars" size={24} color={ui.button.color}
+                            style={ui.button} />
                     </TouchableOpacity>
-                    <Text numberOfLines={1} style={{ fontSize: 18, fontWeight: '600', marginLeft: 'auto', marginRight: 'auto', marginTop: 'auto', marginBottom: 'auto' }}>WindowsBlogItalia</Text>
-                    <TouchableOpacity>
-                        <IconSimple name="settings" size={24} color="#238E9A"
-                            style={{ margin: 12 }} />
+                    <Text numberOfLines={1} style={[ui.title, ui.centered]}>WindowsBlogItalia</Text>
+                    <TouchableOpacity onPress={this.onSettingsPressed}>
+                        <IconSimple name="settings" size={24} color={ui.button.color}
+                            style={ui.button} />
                     </TouchableOpacity>
                 </View>
 
                 {this.props.error ?
-                    <Text style={[ui.biggerText, { marginLeft: 'auto', marginRight: 'auto', marginTop: 'auto', marginBottom: 'auto' }]}>{this.props.error}</Text> :
+                    <Text style={[ui.biggerText, ui.centered]}>{this.props.error}</Text> :
                     <FlatList data={this.props.articles}
                         keyExtractor={(item, index) => item.id.toString()}
                         numColumns={1}
@@ -79,6 +82,13 @@ class ArticleListComponent extends ResponsiveComponent {
                 }
             </View>
         );
+    }
+
+    onHamburgerPressed() {
+    }
+
+    onSettingsPressed() {
+        this.props.navigation.navigate('Settings')
     }
 
     onLoadMore() {
@@ -127,5 +137,5 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withTheme(ArticleListComponent));
+export default connect(mapStateToProps, mapDispatchToProps)(withNavigation(withTheme(ArticleListComponent)));
 

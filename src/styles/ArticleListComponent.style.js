@@ -14,8 +14,27 @@ export function getResponsiveStyle(theme) {
                     height: '100%',
                     // backgroundColor: '#E9E9EF'
                 },
+                topbar: {
+                    height: 48, display: 'flex', flexDirection: 'row', alignItems: 'center'
+                },
+                button: {
+                    marginLeft: 12, marginTop: 12, marginBottom: 12, marginRight: 12,
+                    color: "#238E9A"
+                },
+                appname: {
+                    fontSize: 12, fontWeight: '400', marginTop: 'auto', marginBottom: 'auto', marginLeft: 6,
+                    color: 'black'
+                },
+                title: {
+                    fontSize: 18, fontWeight: '600',
+                    color: 'black'
+                },
+                centered: {
+                    marginLeft: 'auto', marginRight: 'auto', marginTop: 'auto', marginBottom: 'auto'
+                },
                 biggerText: {
                     fontSize: 14,
+                    color: 'black'
                 }
             },
         },
@@ -38,6 +57,12 @@ export function getResponsiveStyle(theme) {
                 biggerText: {
                     color: 'white'
                 },
+                title: {
+                    color: 'white'
+                },
+                appname: {
+                    color: 'white'
+                }
             }
         },
     ], theme);
