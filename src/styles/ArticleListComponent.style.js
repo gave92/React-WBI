@@ -19,7 +19,7 @@ export function getResponsiveStyle(theme) {
                 },
                 button: {
                     marginLeft: 12, marginTop: 12, marginBottom: 12, marginRight: 12,
-                    color: "#238E9A"
+                    color: "black"
                 },
                 appname: {
                     fontSize: 12, fontWeight: '400', marginTop: 'auto', marginBottom: 'auto', marginLeft: 6,
@@ -53,6 +53,9 @@ export function getResponsiveStyle(theme) {
             style: {
                 container: {
                     backgroundColor: 'transparent'
+                },
+                button: {
+                    color: 'white'
                 },
                 biggerText: {
                     color: 'white'

@@ -18,7 +18,12 @@ export function getResponsiveStyle(theme) {
                 },
                 backbutton: {
                     marginLeft: 12, marginTop: 12, marginBottom: 12, marginRight: 6,
-                    color: "#238E9A"
+                    // color: "#238E9A"
+                    color: 'black'
+                },
+                button: {
+                    marginLeft: 12, marginTop: 12, marginBottom: 12, marginRight: 12,
+                    color: 'black'
                 },
                 title : {
                     fontSize: 18, marginTop: 'auto', marginBottom: 'auto', marginLeft: 6,
@@ -27,7 +32,7 @@ export function getResponsiveStyle(theme) {
             }
         },
         {
-            query: { platoform: 'windows' },
+            query: { platform: 'windows' },
             style: {
                 container: {
                     paddingTop: 36
@@ -38,7 +43,10 @@ export function getResponsiveStyle(theme) {
             query: { theme: 'dark' },
             style: {
                 backbutton: {
-                    color: "#238E9A"
+                    color: 'white'
+                },
+                button: {
+                    color: 'white'
                 },
                 title : {
                     color: 'white'

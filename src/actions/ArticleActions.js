@@ -17,9 +17,9 @@ export function fetchArticles(args) {
             dispatch({type: types.ARTICLES_FETCHED, data: data, articles: data.posts})
         })
         .catch(error => {
-            dispatch({type: types.ARTICLES_FETCHING_ERROR, error: error.message})
-            // let obj = require('./../assets/OfflineArticles.json')
-            // dispatch({ type: types.ARTICLES_FETCHED, data: obj, articles: obj.posts })
+            // dispatch({type: types.ARTICLES_FETCHING_ERROR, error: error.message})
+            let obj = require('./../assets/OfflineArticles.json')
+            dispatch({ type: types.ARTICLES_FETCHED, data: obj, articles: obj.posts })
         })            
     }
 }

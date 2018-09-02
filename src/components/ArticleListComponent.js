@@ -7,17 +7,20 @@ import {
     View,
     FlatList,
     ActivityIndicator,
-    Platform,
     RefreshControl,
     TouchableOpacity
 } from 'react-native';
+import ModalDropdown from './Base/ModalDropdown'
+import SearchBar from './Base/Elements/searchbar/SearchBar'
 import { withNavigation } from 'react-navigation';
 import IconOcticons from 'react-native-vector-icons/Octicons';
-import IconSimple from 'react-native-vector-icons/SimpleLineIcons';
+import IconMaterialCommunity from 'react-native-vector-icons/MaterialCommunityIcons';
 import { ResponsiveComponent, MediaQuery } from "react-native-responsive-ui";
 import withTheme from "./Base/ThemableComponent";
 import { getResponsiveStyle } from './../styles/ArticleListComponent.style'
 
+
+const categories = ['Tutti','Windows','Windows phone','Surface','Lumia','Aggiornamenti'];
 
 class ArticleListComponent extends ResponsiveComponent {
     static defaultProps = {
@@ -30,7 +33,7 @@ class ArticleListComponent extends ResponsiveComponent {
         this.onLoadMore = this.onLoadMore.bind(this);
         this.onRefresh = this.onRefresh.bind(this);
         this.onHamburgerPressed = this.onHamburgerPressed.bind(this);
-        this.onSettingsPressed = this.onSettingsPressed.bind(this);
+        this.onChangeText = this.onChangeText.bind(this);
     }
 
     componentDidMount() {
@@ -44,6 +47,8 @@ class ArticleListComponent extends ResponsiveComponent {
             }
         }
     }
+
+    setRef = ref => this.searchRef = ref;
 
     render() {
         const ui = getResponsiveStyle(this.props.theme);
@@ -60,35 +65,40 @@ class ArticleListComponent extends ResponsiveComponent {
                             style={ui.button} />
                     </TouchableOpacity>
                     <Text numberOfLines={1} style={[ui.title, ui.centered]}>WindowsBlogItalia</Text>
-                    <TouchableOpacity onPress={this.onSettingsPressed}>
-                        <IconSimple name="settings" size={24} color={ui.button.color}
+                    <ModalDropdown options={categories} dropdownStyle={{ width: 150 }}>
+                        <IconMaterialCommunity name="filter-outline" size={24} color={ui.button.color}
                             style={ui.button} />
-                    </TouchableOpacity>
+                    </ModalDropdown>
                 </View>
 
-                {this.props.error ?
-                    <Text style={[ui.biggerText, ui.centered]}>{this.props.error}</Text> :
-                    <FlatList data={this.props.articles}
-                        keyExtractor={(item, index) => item.id.toString()}
-                        numColumns={1}
-                        ListFooterComponent={this.renderFooter}
-                        renderItem={({ item }) => <ArticleItemComponent article={item} />}
-                        onEndReached={this.onLoadMore}
-                        onEndThreshold={0}
-                        refreshControl={
-                            <RefreshControl
-                                refreshing={this.props.refreshing}
-                                onRefresh={this.onRefresh} />} />
-                }
+                {this.props.error && <Text style={[ui.biggerText, ui.centered]}>{this.props.error}</Text>}
+
+                {!this.props.error && <SearchBar lightTheme={this.props.theme !== 'dark'}
+                    ref={this.setRef}
+                    onChangeText={this.onChangeText}
+                    platform="default"
+                    placeholder='Search articles...' />}
+
+                {!this.props.error && <FlatList data={this.props.articles}
+                    keyExtractor={(item, index) => item.id.toString()}
+                    numColumns={1}
+                    ListFooterComponent={this.renderFooter}
+                    renderItem={({ item }) => <ArticleItemComponent article={item} />}
+                    onEndReached={this.onLoadMore}
+                    onEndThreshold={0}
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={this.props.refreshing}
+                            onRefresh={this.onRefresh} />} />}
             </View>
         );
     }
 
-    onHamburgerPressed() {
+    onChangeText(text) {
+
     }
 
-    onSettingsPressed() {
-        this.props.navigation.navigate('Settings')
+    onHamburgerPressed() {
     }
 
     onLoadMore() {

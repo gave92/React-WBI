@@ -6,6 +6,7 @@ import {
     TouchableOpacity
 } from 'react-native';
 import { withNavigation } from 'react-navigation';
+import IconOcticons from 'react-native-vector-icons/Octicons';
 import IconMaterial from 'react-native-vector-icons/MaterialIcons';
 import WebViewComponent from './Base/WebView/WebViewComponent';
 import Styler from './Base/Styler';
@@ -32,6 +33,11 @@ class ArticleDetailComponent extends React.Component {
                             </TouchableOpacity> : null
                         }
                         <Text numberOfLines={1} style={ui.title}>{this.props.article.title_plain}</Text>
+                        <View style={{ flexGrow: 1 }} />
+                        <TouchableOpacity onPress={this.onRefresh}>
+                            <IconOcticons name="comment-discussion" size={24} color={ui.button.color}
+                                style={ui.button} />
+                        </TouchableOpacity>
                     </View>
 
                     <WebViewComponent source={{ html: this.getHtml() }} />

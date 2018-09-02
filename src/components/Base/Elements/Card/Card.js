@@ -9,9 +9,9 @@ import {
 } from 'react-native';
 import fonts from '../config/fonts';
 import colors from '../config/colors';
-import Text from './../text/Text';
-import Divider from './../divider/Divider';
-import normalize from './../helpers/normalizeText';
+import Text from '../text/Text';
+import Divider from '../divider/Divider';
+import normalize from '../helpers/normalizeText';
 import ViewPropTypes from '../config/ViewPropTypes';
 import BackgroundImage from '../config/BackgroundImage';
 
