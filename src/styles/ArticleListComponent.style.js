@@ -31,7 +31,7 @@ export function getResponsiveStyle(theme) {
                 },
                 biggerText: {
                     fontSize: 14,
-                    color: 'white'
+                    color: 'black'
                 }
             },
         },
