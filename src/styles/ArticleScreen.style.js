@@ -9,11 +9,18 @@ export function getResponsiveStyle(theme) {
                 container: {
                     backgroundColor: 'white',
                     display: 'flex',
-                    flexDirection: 'row',
+                    flexDirection: 'column',
                     height: '100%',
                     width: '100%',
                     overflow: 'hidden'
-                }
+                },
+                titlebar: {
+                    height: 36, backgroundColor: '#238E9A'
+                },
+                appname: {
+                    fontSize: 12, fontWeight: '400', marginTop: 'auto', marginBottom: 'auto', marginLeft: 6,
+                    color: 'white'
+                },
             }
         },
         {
@@ -21,7 +28,13 @@ export function getResponsiveStyle(theme) {
             style: {
                 container: {
                     backgroundColor: 'black',
-                }
+                },
+                titlebar: {
+                    backgroundColor: '#333333'
+                },
+                appname: {
+                    color: 'white'
+                },
             }
         },
     ], theme);

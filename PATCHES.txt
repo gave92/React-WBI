@@ -9,6 +9,23 @@ STYLE:
         height: '100%'
     }
 
+FILE: .\node_modules\react-native-drawer-layout\dist\DrawerLayout.js
+STYLE:
+	<View style={{ flex: 1, backgroundColor: 'transparent', height: '100%' }} ...
+
+{drawerShown ?
+          <TouchableWithoutFeedback
+            pointerEvents={pointerEvents}
+            onPress={this._onOverlayClick}>
+            <Animated.View
+              pointerEvents={pointerEvents}
+              style={[styles.overlay, animatedOverlayStyles]}
+            />
+          </TouchableWithoutFeedback>          
+          : null}
+
+https://github.com/react-native-community/react-native-drawer-layout/blob/master/src/DrawerLayout.js
+
 FILE: .\node_modules\react-navigation-stack\dist\views\Header\Header.js
 STYLE:
 	const TITLE_OFFSET_LEFT_ALIGN = 20;

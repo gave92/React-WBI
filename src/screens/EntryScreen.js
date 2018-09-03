@@ -1,9 +1,10 @@
 import React from 'react';
 import {
-    View
+    View,
+    Text
 } from 'react-native';
+import { MediaQuery } from "react-native-responsive-ui";
 import { Display } from "./../components/Base/Display";
-import Divider from './../components/Base/Elements/divider/Divider'
 import ArticleListComponent from './../components/ArticleListComponent'
 import ArticleDetailComponent from './../components/ArticleDetailComponent'
 import withTheme from "./../components/Base/ThemableComponent";
@@ -20,11 +21,17 @@ class EntryScreen extends React.Component {
         const ui = getResponsiveStyle(this.props.theme);
         return (
             <View style={ui.container}>
-                <ArticleListComponent />
-                <Divider direction='vertical' />
-                <Display minWidth={700} enabledStyle={ui.detail}>
-                    <ArticleDetailComponent />
-                </Display>
+                <MediaQuery platform='windows'>
+                    <View style={ui.titlebar}>
+                        <Text numberOfLines={1} style={ui.appname}>WindowsBlogItalia</Text>
+                    </View>
+                </MediaQuery>
+                <View style={ui.content}>                    
+                    <Display minWidth={700} enabledStyle={ui.detail}>
+                        <ArticleDetailComponent />
+                    </Display>
+                    <ArticleListComponent rootNavigation={this.props.rootNavigation} />
+                </View>
             </View>
         );
     }

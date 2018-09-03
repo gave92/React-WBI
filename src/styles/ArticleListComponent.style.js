@@ -8,33 +8,30 @@ export function getResponsiveStyle(theme) {
             style: {
                 container: {
                     display: 'flex',
+                    flexDirection: 'column-reverse',
                     flexShrink: 0,
                     flexGrow: 0,
                     width: '100%',
                     height: '100%',
-                    // backgroundColor: '#E9E9EF'
-                },
+                },                
                 topbar: {
-                    height: 48, display: 'flex', flexDirection: 'row', alignItems: 'center'
+                    height: 48, display: 'flex', flexDirection: 'row', alignItems: 'center',
+                    backgroundColor: '#238E9A'
                 },
                 button: {
                     marginLeft: 12, marginTop: 12, marginBottom: 12, marginRight: 12,
-                    color: "black"
-                },
-                appname: {
-                    fontSize: 12, fontWeight: '400', marginTop: 'auto', marginBottom: 'auto', marginLeft: 6,
-                    color: 'black'
-                },
+                    color: "white"
+                },                
                 title: {
                     fontSize: 18, fontWeight: '600',
-                    color: 'black'
+                    color: 'white'
                 },
                 centered: {
                     marginLeft: 'auto', marginRight: 'auto', marginTop: 'auto', marginBottom: 'auto'
                 },
                 biggerText: {
                     fontSize: 14,
-                    color: 'black'
+                    color: 'white'
                 }
             },
         },
@@ -50,9 +47,9 @@ export function getResponsiveStyle(theme) {
         },
         {
             query: { theme: 'dark' },
-            style: {
-                container: {
-                    backgroundColor: 'transparent'
+            style: {               
+                topbar: {
+                    backgroundColor: '#333333'
                 },
                 button: {
                     color: 'white'
@@ -62,10 +59,7 @@ export function getResponsiveStyle(theme) {
                 },
                 title: {
                     color: 'white'
-                },
-                appname: {
-                    color: 'white'
-                }
+                },                
             }
         },
     ], theme);

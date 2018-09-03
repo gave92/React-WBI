@@ -14,34 +14,30 @@ export function getResponsiveStyle(theme) {
                     height: '100%'
                 },
                 topbar : {
-                    height: 48, display: 'flex', flexDirection: 'row', alignItems: 'center'
+                    height: 48, display: 'flex', flexDirection: 'row', alignItems: 'center',
+                    backgroundColor: '#238E9A'
                 },
                 backbutton: {
                     marginLeft: 12, marginTop: 12, marginBottom: 12, marginRight: 6,
                     // color: "#238E9A"
-                    color: 'black'
+                    color: 'white'
                 },
                 button: {
                     marginLeft: 12, marginTop: 12, marginBottom: 12, marginRight: 12,
-                    color: 'black'
+                    color: 'white'
                 },
                 title : {
                     fontSize: 18, marginTop: 'auto', marginBottom: 'auto', marginLeft: 6,
-                    color: 'black'
-                }
-            }
-        },
-        {
-            query: { platform: 'windows' },
-            style: {
-                container: {
-                    paddingTop: 36
+                    color: 'white'
                 }
             }
         },
         {
             query: { theme: 'dark' },
             style: {
+                topbar: {
+                    backgroundColor: '#333333'
+                },
                 backbutton: {
                     color: 'white'
                 },

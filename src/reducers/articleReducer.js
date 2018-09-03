@@ -3,7 +3,7 @@
  */
 import * as types from "../actions/ActionTypes";
 
-const initialState = { articles: [] };
+const initialState = { articles: [], page: 1 };
 
 export default function articleReducer(state = initialState, action) {
     switch (action.type) {
@@ -11,6 +11,7 @@ export default function articleReducer(state = initialState, action) {
             return {
                 ...state,
                 data: action.data,
+                page: state.page + 1,
                 articles: [...state.articles, ...action.articles]
             };
         case types.ARTICLES_FETCHING_ERROR:
@@ -22,6 +23,7 @@ export default function articleReducer(state = initialState, action) {
             return {
                 ...state,
                 data: action.data,
+                page: 1,
                 articles: action.articles
             };
         case types.GUI_ARTICLE_SELECTED:

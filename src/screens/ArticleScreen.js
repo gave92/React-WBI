@@ -1,7 +1,9 @@
 import React from 'react';
 import {
     View,
+    Text
 } from 'react-native';
+import { MediaQuery } from "react-native-responsive-ui";
 import { responsive } from "react-native-responsive-ui";
 import ArticleDetailComponent from './../components/ArticleDetailComponent'
 import withTheme from "./../components/Base/ThemableComponent";
@@ -18,6 +20,11 @@ class ArticleScreen extends React.Component {
         const ui = getResponsiveStyle(this.props.theme);
         return (
             <View style={ui.container}>
+                <MediaQuery platform='windows'>
+                    <View style={ui.titlebar}>
+                        <Text numberOfLines={1} style={ui.appname}>WindowsBlogItalia</Text>
+                    </View>
+                </MediaQuery>
                 <ArticleDetailComponent />
             </View>
         );

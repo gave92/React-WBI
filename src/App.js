@@ -2,42 +2,54 @@ import React from 'react';
 // import ReactNative from 'react-native'
 import { Provider } from "react-redux";
 import store from "./utilities/storage/store";
+import IconMaterialCommunity from 'react-native-vector-icons/MaterialCommunityIcons';
 import EntryScreen from './screens/EntryScreen';
 import ArticleScreen from './screens/ArticleScreen';
 import SettingsScreen from './screens/SettingsScreen';
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 // import styles from './styles/App.style'
 
 
 const RootStack = createStackNavigator({
     Home: {
-        screen: EntryScreen,
+        screen: ({ screenProps }) => <EntryScreen rootNavigation={screenProps.rootNavigation} />,
         navigationOptions: ({ navigation }) => ({
             title: 'WindowsBlogItalia',
-            headerStyle: { backgroundColor: '#238E9A' },
-            headerTintColor: 'white'
         }),
     },
     Article: {
         screen: ArticleScreen,
         navigationOptions: ({ navigation }) => ({
             title: '',
-            headerStyle: { backgroundColor: '#238E9A' },
-            headerTintColor: 'white'
+        }),
+    },
+}, {
+        initialRouteName: 'Home',
+        headerMode: 'none',
+    });
+
+
+const DrawerStack = createDrawerNavigator({
+    Home: {
+        screen: ({ navigation }) => <RootStack screenProps={{ rootNavigation: navigation }} />,
+        navigationOptions: ({ navigation }) => ({
+            title: 'Home',
+            drawerIcon: () => (<IconMaterialCommunity name="home-outline" size={24} color='black' />)
         }),
     },
     Settings: {
         screen: SettingsScreen,
         navigationOptions: ({ navigation }) => ({
             title: 'Settings',
-            headerStyle: { backgroundColor: '#238E9A' },
-            headerTintColor: 'white'
+            drawerIcon: () => (<IconMaterialCommunity name="settings-outline" size={24} color='black' />)
         }),
     },
 }, {
-        initialRouteName: 'Home',
-        headerMode: 'none',
-        headerLayoutPreset: 'left'
+        contentOptions: {
+            activeTintColor: '#238E9A',
+            inactiveTintColor: 'black'
+        },
+        drawerBackgroundColor: 'white'
     });
 
 
@@ -45,7 +57,7 @@ class App extends React.Component {
     render() {
         return (
             <Provider store={store}>
-                <RootStack />
+                <DrawerStack />
             </Provider>
         );
     }

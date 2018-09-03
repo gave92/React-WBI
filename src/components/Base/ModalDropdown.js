@@ -250,7 +250,7 @@ export default class ModalDropdown extends Component {
     }
 
     positionStyle.top = Platform.OS === 'windows' ? 0 : positionStyle.top;
-    positionStyle.left = Platform.OS === 'windows' ? 0 : positionStyle.left;
+    positionStyle.left = Platform.OS === 'windows' ? Math.min(0, positionStyle.left) : positionStyle.left;
 
     return adjustFrame ? adjustFrame(positionStyle) : positionStyle;
   }

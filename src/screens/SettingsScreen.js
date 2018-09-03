@@ -25,7 +25,7 @@ class SettingsScreen extends React.Component {
         return (
             <View style={ui.container}>
                 <MediaQuery platform='windows'>
-                    <View style={{ height: 36 }}>
+                    <View style={ui.titlebar}>
                         <Text numberOfLines={1} style={ui.appname}>WindowsBlogItalia</Text>
                     </View>
                 </MediaQuery>
@@ -39,7 +39,7 @@ class SettingsScreen extends React.Component {
                     <Text numberOfLines={1} style={ui.title}>Settings</Text>
                 </View>
                 <TouchableOpacity onPress={this.onChangeTheme}>
-                    <Text style={ui.title}>{this.props.theme}</Text>
+                    <Text style={ui.text}>{this.props.theme}</Text>
                 </TouchableOpacity>
             </View>
         );

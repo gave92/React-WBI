@@ -12,24 +12,23 @@ import {
 } from 'react-native';
 import ModalDropdown from './Base/ModalDropdown'
 import SearchBar from './Base/Elements/searchbar/SearchBar'
-import { withNavigation } from 'react-navigation';
 import IconOcticons from 'react-native-vector-icons/Octicons';
 import IconMaterialCommunity from 'react-native-vector-icons/MaterialCommunityIcons';
-import { ResponsiveComponent, MediaQuery } from "react-native-responsive-ui";
+import { ResponsiveComponent } from "react-native-responsive-ui";
 import withTheme from "./Base/ThemableComponent";
 import { getResponsiveStyle } from './../styles/ArticleListComponent.style'
 
 
-const categories = ['Tutti','Windows','Windows phone','Surface','Lumia','Aggiornamenti'];
+const categories = ['Tutti', 'Windows', 'Windows phone', 'Surface', 'Lumia', 'Aggiornamenti'];
 
 class ArticleListComponent extends ResponsiveComponent {
     static defaultProps = {
-        refreshing: false
+        refreshing: false,
+        page: 1
     };
 
     constructor(props, context) {
         super(props, context);
-        this.state = { ...this.state, page: 1 };
         this.onLoadMore = this.onLoadMore.bind(this);
         this.onRefresh = this.onRefresh.bind(this);
         this.onHamburgerPressed = this.onHamburgerPressed.bind(this);
@@ -37,7 +36,9 @@ class ArticleListComponent extends ResponsiveComponent {
     }
 
     componentDidMount() {
-        this.props.fetchArticles({ page: this.state.page })
+        if (this.props.page === 1) {
+            this.props.fetchArticles({ page: this.props.page })
+        }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -54,31 +55,6 @@ class ArticleListComponent extends ResponsiveComponent {
         const ui = getResponsiveStyle(this.props.theme);
         return (
             <View style={ui.container}>
-                <MediaQuery platform='windows'>
-                    <View style={{ height: 36 }}>
-                        <Text numberOfLines={1} style={ui.appname}>WindowsBlogItalia</Text>
-                    </View>
-                </MediaQuery>
-                <View style={ui.topbar}>
-                    <TouchableOpacity onPress={this.onHamburgerPressed}>
-                        <IconOcticons name="three-bars" size={24} color={ui.button.color}
-                            style={ui.button} />
-                    </TouchableOpacity>
-                    <Text numberOfLines={1} style={[ui.title, ui.centered]}>WindowsBlogItalia</Text>
-                    <ModalDropdown options={categories} dropdownStyle={{ width: 150 }}>
-                        <IconMaterialCommunity name="filter-outline" size={24} color={ui.button.color}
-                            style={ui.button} />
-                    </ModalDropdown>
-                </View>
-
-                {this.props.error && <Text style={[ui.biggerText, ui.centered]}>{this.props.error}</Text>}
-
-                {!this.props.error && <SearchBar lightTheme={this.props.theme !== 'dark'}
-                    ref={this.setRef}
-                    onChangeText={this.onChangeText}
-                    platform="default"
-                    placeholder='Search articles...' />}
-
                 {!this.props.error && <FlatList data={this.props.articles}
                     keyExtractor={(item, index) => item.id.toString()}
                     numColumns={1}
@@ -90,6 +66,26 @@ class ArticleListComponent extends ResponsiveComponent {
                         <RefreshControl
                             refreshing={this.props.refreshing}
                             onRefresh={this.onRefresh} />} />}
+
+                {!this.props.error && <SearchBar lightTheme={this.props.theme !== 'dark'}
+                    ref={this.setRef}
+                    onChangeText={this.onChangeText}
+                    platform="default"
+                    placeholder='Search articles...' />}
+
+                {this.props.error && <Text style={[ui.biggerText, ui.centered]}>{this.props.error}</Text>}
+
+                <View style={ui.topbar}>
+                    <TouchableOpacity onPress={this.onHamburgerPressed}>
+                        <IconOcticons name="three-bars" size={24} color={ui.button.color}
+                            style={ui.button} />
+                    </TouchableOpacity>
+                    <Text numberOfLines={1} style={[ui.title, ui.centered]}>WindowsBlogItalia</Text>
+                    <ModalDropdown options={categories} dropdownStyle={{ width: 150 }}>
+                        <IconMaterialCommunity name="filter-outline" size={24} color={ui.button.color}
+                            style={ui.button} />
+                    </ModalDropdown>
+                </View>
             </View>
         );
     }
@@ -99,16 +95,15 @@ class ArticleListComponent extends ResponsiveComponent {
     }
 
     onHamburgerPressed() {
+        this.props.rootNavigation.openDrawer();
     }
 
     onLoadMore() {
-        this.setState({ page: this.state.page + 1 },
-            () => this.props.fetchArticles({ page: this.state.page }))
+        this.props.fetchArticles({ page: this.props.page })
     }
 
     onRefresh = () => {
-        this.setState({ page: 1 },
-            () => this.props.refreshArticles({ page: this.state.page }))
+        this.props.refreshArticles()
     }
 
     renderFooter = () => {
@@ -130,6 +125,7 @@ function mapStateToProps(state, ownProps) {
         error: state.articleReducer.error,
         selected: state.articleReducer.selected,
         refreshing: state.articleReducer.isloading,
+        page: state.articleReducer.page,
     }
 }
 
@@ -142,10 +138,10 @@ function mapDispatchToProps(dispatch) {
             dispatch(ArticleActions.fetchArticles(args))
         },
         refreshArticles(args) {
-            dispatch(ArticleActions.refreshArticles(args))
+            dispatch(ArticleActions.refreshArticles())
         }
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withNavigation(withTheme(ArticleListComponent)));
+export default connect(mapStateToProps, mapDispatchToProps)(withTheme(ArticleListComponent));
 

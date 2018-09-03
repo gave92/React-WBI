@@ -14,38 +14,54 @@ export function getResponsiveStyle(theme) {
                     width: '100%',
                     height: '100%',
                 },
+                titlebar: {
+                    height: 36, backgroundColor: '#238E9A'
+                },
                 appname: {
                     fontSize: 12, fontWeight: '400', marginTop: 'auto', marginBottom: 'auto', marginLeft: 6,
-                    color: 'black'
+                    color: 'white'
                 },
                 topbar : {
-                    height: 48, display: 'flex', flexDirection: 'row', alignItems: 'center'
+                    height: 48, display: 'flex', flexDirection: 'row', alignItems: 'center',
+                    backgroundColor: '#238E9A'
                 },
                 backbutton: {
                     marginLeft: 12, marginTop: 12, marginBottom: 12, marginRight: 6,
-                    color: "#238E9A"
+                    color: 'white'
                 },
                 title : {
                     fontSize: 18, marginTop: 'auto', marginBottom: 'auto', marginLeft: 6,
+                    color: 'white'
+                },
+                text: {
                     color: 'black'
-                }
+                },
             }
         },
         {
             query: { theme: 'dark' },
             style: {
                 backbutton: {
-                    color: "#238E9A"
+                    color: 'white'
+                },
+                text: {
+                    color: 'white'
                 },
                 title: {
                     color: 'white'
                 },
+                container: {
+                    backgroundColor: 'black',
+                },
+                titlebar: {
+                    backgroundColor: '#333333'
+                },
+                topbar: {
+                    backgroundColor: '#333333'
+                },
                 appname: {
                     color: 'white'
                 },
-                container: {
-                    backgroundColor: 'black',
-                }
             }
         },
     ], theme);
