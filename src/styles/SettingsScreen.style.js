@@ -39,6 +39,14 @@ export function getResponsiveStyle(theme) {
             }
         },
         {
+            query: { platform: 'android' },
+            style: {
+                topbar: {
+                    height: 56
+                },
+            }
+        },
+        {
             query: { theme: 'dark' },
             style: {
                 backbutton: {

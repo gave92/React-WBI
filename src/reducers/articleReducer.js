@@ -12,7 +12,7 @@ export default function articleReducer(state = initialState, action) {
                 ...state,
                 data: action.data,
                 page: state.page + 1,
-                articles: [...state.articles, ...action.articles]
+                articles: [...state.articles, ...action.articles.filter(e1 => !state.articles.some(e2 => e1.id === e2.id))]
             };
         case types.ARTICLES_FETCHING_ERROR:
             return {

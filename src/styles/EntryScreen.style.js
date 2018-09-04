@@ -17,7 +17,8 @@ export function getResponsiveStyle(theme) {
                 content: {
                     display: 'flex',
                     flexDirection: 'row-reverse',
-                    height: '100%',
+                    flexGrow: 1,
+                    flexShrink: 1,
                     width: '100%',
                 },
                 titlebar: {
