@@ -19,7 +19,13 @@ import withTheme from "./Base/ThemableComponent";
 import { getResponsiveStyle } from './../styles/ArticleListComponent.style'
 
 
-const categories = ['Tutti', 'Windows', 'Windows phone', 'Surface', 'Lumia', 'Aggiornamenti'];
+const categories = [
+    { name: 'Tutti', tag: '' },
+    { name: 'Windows', tag: 'windows-10' },
+    { name: 'Windows phone', tag: 'windows-10-mobile' },
+    { name: 'Surface', tag: 'surface' },
+    { name: 'Lumia', tag: 'lumia' },
+    { name: 'Aggiornamenti', tag: 'store-update' }];
 
 class ArticleListComponent extends ResponsiveComponent {
     static defaultProps = {
@@ -33,6 +39,7 @@ class ArticleListComponent extends ResponsiveComponent {
         this.onRefresh = this.onRefresh.bind(this);
         this.onHamburgerPressed = this.onHamburgerPressed.bind(this);
         this.onChangeText = this.onChangeText.bind(this);
+        this.onSelect = this.onSelect.bind(this);
     }
 
     componentDidMount() {
@@ -55,7 +62,7 @@ class ArticleListComponent extends ResponsiveComponent {
         const ui = getResponsiveStyle(this.props.theme);
         return (
             <View style={ui.container}>
-                {!this.props.error && <FlatList data={this.props.articles}
+                {!this.props.error && <FlatList data={this.props.filtered}
                     keyExtractor={(item, index) => item.id.toString()}
                     numColumns={1}
                     ListFooterComponent={this.renderFooter}
@@ -81,7 +88,10 @@ class ArticleListComponent extends ResponsiveComponent {
                             style={ui.button} />
                     </TouchableOpacity>
                     <Text numberOfLines={1} style={[ui.title, ui.centered]}>WindowsBlogItalia</Text>
-                    <ModalDropdown options={categories} dropdownStyle={{ width: 150 }}>
+                    <ModalDropdown options={categories.map(c => c.name)}
+                        dropdownStyle={{ width: 150 }}
+                        defaultValue={categories[0].name}
+                        onSelect={this.onSelect}>
                         <IconMaterialCommunity name="filter-outline" size={24} color={ui.button.color}
                             style={ui.button} />
                     </ModalDropdown>
@@ -92,6 +102,11 @@ class ArticleListComponent extends ResponsiveComponent {
 
     onChangeText(text) {
 
+    }
+
+    onSelect(idx, value) {
+        if (idx < 0) return;
+        this.props.setArticleFilter({ tag: categories[idx].tag });
     }
 
     onHamburgerPressed() {
@@ -120,8 +135,7 @@ class ArticleListComponent extends ResponsiveComponent {
 
 function mapStateToProps(state, ownProps) {
     return {
-        data: state.articleReducer.data,
-        articles: state.articleReducer.articles,
+        filtered: state.articleReducer.filtered,
         error: state.articleReducer.error,
         selected: state.articleReducer.selected,
         refreshing: state.articleReducer.isloading,
@@ -137,8 +151,11 @@ function mapDispatchToProps(dispatch) {
         fetchArticles(args) {
             dispatch(ArticleActions.fetchArticles(args))
         },
-        refreshArticles(args) {
+        refreshArticles() {
             dispatch(ArticleActions.refreshArticles())
+        },
+        setArticleFilter(args) {
+            dispatch(ArticleActions.setArticleFilter(args))
         }
     }
 }
