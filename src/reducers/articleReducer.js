@@ -3,7 +3,16 @@
  */
 import * as types from "../actions/ActionTypes";
 
-const initialState = { articles: [], page: 1 };
+const initialState = { articles: [], page: 1, filtered: [] };
+
+const getFilteredArticles = (articles, category) => {
+    if (!category) return articles;
+    if (category.exclude) {
+        return articles.filter(e => !e.categories.some(c => c.slug === category.tag))
+    }
+    return articles.filter(e => e.categories.some(c => c.slug === category.tag))
+}
+
 
 export default function articleReducer(state = initialState, action) {
     switch (action.type) {
@@ -14,7 +23,7 @@ export default function articleReducer(state = initialState, action) {
                 data: action.data,
                 page: state.page + 1,
                 articles: [...state.articles, ...newArticles],
-                filtered: state.filterTag ? [...state.filtered, ...newArticles.filter(e => e.categories.some(c => c.slug === state.filterTag))] : [...state.articles, ...newArticles]
+                filtered: [...state.filtered, ...getFilteredArticles(newArticles, state.category)]
             };
         case types.ARTICLES_FETCHING_ERROR:
             return {
@@ -27,14 +36,14 @@ export default function articleReducer(state = initialState, action) {
                 data: action.data,
                 page: 1,
                 articles: action.articles,
-                filtered: state.filterTag ? action.articles.filter(e => e.categories.some(c => c.slug === state.filterTag)) : action.articles
+                filtered: getFilteredArticles(action.articles, state.category)
             };
         case types.ARTICLES_FILTER_CHANGED:
-            if (state.filterTag !== action.filterTag) {
+            if (state.category !== action.category) {
                 return {
                     ...state,
-                    filterTag: action.filterTag,
-                    filtered: action.filterTag ? state.articles.filter(e => e.categories.some(c => c.slug === action.filterTag)) : state.articles
+                    category: action.category,
+                    filtered: getFilteredArticles(state.articles, action.category)
                 };
             }
             return state;

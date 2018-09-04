@@ -54,6 +54,6 @@ export function selectArticle(article) {
 
 export function setArticleFilter(args) {
     return (dispatch) => {
-        dispatch({ type: types.ARTICLES_FILTER_CHANGED, filterTag: args.tag })
+        dispatch({ type: types.ARTICLES_FILTER_CHANGED, category: args })
     }
 }

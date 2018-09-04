@@ -20,7 +20,7 @@ import { getResponsiveStyle } from './../styles/ArticleListComponent.style'
 
 
 const categories = [
-    { name: 'Tutti', tag: '' },
+    { name: 'Tutti', tag: 'store-update', exclude: true },
     { name: 'Windows', tag: 'windows-10' },
     { name: 'Windows phone', tag: 'windows-10-mobile' },
     { name: 'Surface', tag: 'surface' },
@@ -43,15 +43,18 @@ class ArticleListComponent extends ResponsiveComponent {
     }
 
     componentDidMount() {
+        if (!this.props.category) {
+            this.props.setArticleFilter(categories[0])
+        }
         if (this.props.page === 1) {
             this.props.fetchArticles({ page: this.props.page })
         }
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.articles !== this.props.articles) {
-            if (nextProps.articles && !nextProps.selected) {
-                this.props.onArticleClicked(nextProps.articles[0]);
+        if (nextProps.filtered !== this.props.filtered) {
+            if (nextProps.filtered && !nextProps.selected) {
+                this.props.onArticleClicked(nextProps.filtered[0]);
             }
         }
     }
@@ -90,7 +93,6 @@ class ArticleListComponent extends ResponsiveComponent {
                     <Text numberOfLines={1} style={[ui.title, ui.centered]}>WindowsBlogItalia</Text>
                     <ModalDropdown options={categories.map(c => c.name)}
                         dropdownStyle={{ width: 150 }}
-                        defaultValue={categories[0].name}
                         onSelect={this.onSelect}>
                         <IconMaterialCommunity name="filter-outline" size={24} color={ui.button.color}
                             style={ui.button} />
@@ -106,7 +108,7 @@ class ArticleListComponent extends ResponsiveComponent {
 
     onSelect(idx, value) {
         if (idx < 0) return;
-        this.props.setArticleFilter({ tag: categories[idx].tag });
+        this.props.setArticleFilter(categories[idx]);
     }
 
     onHamburgerPressed() {
@@ -136,6 +138,7 @@ class ArticleListComponent extends ResponsiveComponent {
 function mapStateToProps(state, ownProps) {
     return {
         filtered: state.articleReducer.filtered,
+        category: state.articleReducer.category,
         error: state.articleReducer.error,
         selected: state.articleReducer.selected,
         refreshing: state.articleReducer.isloading,
