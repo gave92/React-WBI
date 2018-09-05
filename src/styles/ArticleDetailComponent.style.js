@@ -28,6 +28,7 @@ export function getResponsiveStyle(theme) {
                 },
                 title : {
                     fontSize: 18, marginTop: 'auto', marginBottom: 'auto', marginLeft: 6,
+                    flexShrink: 1, flexGrow: 1, flexBasis: 0,
                     color: 'white'
                 }
             }

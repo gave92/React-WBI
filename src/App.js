@@ -1,13 +1,17 @@
 import React from 'react';
+import {
+    ActivityIndicator,
+    View
+} from 'react-native';
 import { Provider } from "react-redux";
 import { PersistGate } from 'redux-persist/integration/react'
-import configureStore from "./utilities/storage/configureStore";
+import configureStore from "./reducers/configureStore";
 import IconMaterialCommunity from 'react-native-vector-icons/MaterialCommunityIcons';
 import EntryScreen from './screens/EntryScreen';
 import ArticleScreen from './screens/ArticleScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
-// import styles from './styles/App.style'
+import styles from './styles/App.style'
 
 
 const RootStack = createStackNavigator({
@@ -59,7 +63,11 @@ class App extends React.Component {
     render() {
         return (
             <Provider store={storeConfig.store}>
-                <PersistGate loading={null} persistor={storeConfig.persistor}>
+                <PersistGate loading={
+                                <View style={styles.container}>
+                                    <ActivityIndicator style={styles.centered} animating size="large" />
+                                </View>}
+                             persistor={storeConfig.persistor}>
                     <DrawerStack />
                 </PersistGate>
             </Provider>

@@ -47,7 +47,7 @@ class ArticleListComponent extends ResponsiveComponent {
             this.props.setArticleFilter(categories[0])
         }
         if (this.props.page === 1) {
-            this.props.fetchArticles({ page: this.props.page })
+            this.props.refreshArticles()
         }
     }
 
@@ -65,25 +65,23 @@ class ArticleListComponent extends ResponsiveComponent {
         const ui = getResponsiveStyle(this.props.theme);
         return (
             <View style={ui.container}>
-                {!this.props.error && <FlatList data={this.props.filtered}
+                <FlatList data={this.props.filtered}
                     keyExtractor={(item, index) => item.id.toString()}
                     numColumns={1}
-                    ListFooterComponent={this.renderFooter}
+                    ListFooterComponent={this.renderFooter(ui)}
                     renderItem={({ item }) => <ArticleItemComponent article={item} />}
                     onEndReached={this.onLoadMore}
                     onEndThreshold={0}
                     refreshControl={
                         <RefreshControl
                             refreshing={this.props.refreshing}
-                            onRefresh={this.onRefresh} />} />}
+                            onRefresh={this.onRefresh} />} />
 
-                {!this.props.error && <SearchBar lightTheme={this.props.theme !== 'dark'}
+                <SearchBar lightTheme={this.props.theme !== 'dark'}
                     ref={this.setRef}
                     onChangeText={this.onChangeText}
                     platform="default"
-                    placeholder='Search articles...' />}
-
-                {this.props.error && <Text style={[ui.biggerText, ui.centered]}>{this.props.error}</Text>}
+                    placeholder='Search articles...' />
 
                 <View style={ui.topbar}>
                     <TouchableOpacity onPress={this.onHamburgerPressed}>
@@ -123,15 +121,18 @@ class ArticleListComponent extends ResponsiveComponent {
         this.props.refreshArticles()
     }
 
-    renderFooter = () => {
-        return (
-            <View
-                style={{
-                    paddingVertical: 20
-                }}>
-                <ActivityIndicator animating size="large" />
-            </View>
-        );
+    renderFooter = (ui) => {
+        return () => {
+            return (
+                <View
+                    style={{
+                        paddingVertical: 20
+                    }}>
+                    {this.props.error ? <Text style={[ui.biggerText, ui.centered]}>{this.props.error}</Text>
+                        : <ActivityIndicator animating size="large" />}
+                </View>
+            );
+        }
     };
 }
 

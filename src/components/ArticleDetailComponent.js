@@ -33,7 +33,6 @@ class ArticleDetailComponent extends React.Component {
                             </TouchableOpacity> : null
                         }
                         <Text numberOfLines={1} style={ui.title}>{this.props.article.title_plain}</Text>
-                        <View style={{ flexGrow: 1 }} />
                         <TouchableOpacity onPress={this.onRefresh}>
                             <IconOcticons name="comment-discussion" size={24} color={ui.button.color}
                                 style={ui.button} />
