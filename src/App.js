@@ -1,7 +1,7 @@
 import React from 'react';
-// import ReactNative from 'react-native'
 import { Provider } from "react-redux";
-import store from "./utilities/storage/store";
+import { PersistGate } from 'redux-persist/integration/react'
+import configureStore from "./utilities/storage/configureStore";
 import IconMaterialCommunity from 'react-native-vector-icons/MaterialCommunityIcons';
 import EntryScreen from './screens/EntryScreen';
 import ArticleScreen from './screens/ArticleScreen';
@@ -53,11 +53,15 @@ const DrawerStack = createDrawerNavigator({
     });
 
 
+const storeConfig = configureStore();
+
 class App extends React.Component {
     render() {
         return (
-            <Provider store={store}>
-                <DrawerStack />
+            <Provider store={storeConfig.store}>
+                <PersistGate loading={null} persistor={storeConfig.persistor}>
+                    <DrawerStack />
+                </PersistGate>
             </Provider>
         );
     }
