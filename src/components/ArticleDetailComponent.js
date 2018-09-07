@@ -18,6 +18,7 @@ class ArticleDetailComponent extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.onBackButtonClicked = this.onBackButtonClicked.bind(this);
+        this.onCommentClicked = this.onCommentClicked.bind(this);
     }
 
     render() {
@@ -33,7 +34,7 @@ class ArticleDetailComponent extends React.Component {
                             </TouchableOpacity> : null
                         }
                         <Text numberOfLines={1} style={ui.title}>{this.props.article.title_plain}</Text>
-                        <TouchableOpacity onPress={this.onRefresh}>
+                        <TouchableOpacity onPress={this.onCommentClicked}>
                             <IconOcticons name="comment-discussion" size={24} color={ui.button.color}
                                 style={ui.button} />
                         </TouchableOpacity>
@@ -44,10 +45,19 @@ class ArticleDetailComponent extends React.Component {
         );
     }
 
+    onCommentClicked() {
+        this.props.navigation.navigate('Comments', { title: this.getTitle() })
+    }
+
     onBackButtonClicked() {
         this.props.navigation.goBack();
     }
 
+    getTitle() {
+        const entities = require('html-entities').Html5Entities;
+        return entities.decode(this.props.article.title_plain);
+    }
+    
     getHtml() {
         let styler = new Styler();
         return styler.ApplyStyle(this.props.article.content, this.props.theme);

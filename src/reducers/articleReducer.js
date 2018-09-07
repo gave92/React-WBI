@@ -23,7 +23,8 @@ export default function articleReducer(state = initialState, action) {
                 data: action.data,
                 page: state.page + 1,
                 articles: [...state.articles, ...newArticles],
-                filtered: [...state.filtered, ...getFilteredArticles(newArticles, state.category)]
+                filtered: [...state.filtered, ...getFilteredArticles(newArticles, state.category)],
+                error: undefined
             };
         case types.ARTICLES_FETCHING_ERROR:
             return {
@@ -36,7 +37,8 @@ export default function articleReducer(state = initialState, action) {
                 data: action.data,
                 page: 1,
                 articles: action.articles,
-                filtered: getFilteredArticles(action.articles, state.category)
+                filtered: getFilteredArticles(action.articles, state.category),
+                error: undefined
             };
         case types.ARTICLES_FILTER_CHANGED:
             if (state.category !== action.category) {

@@ -9,6 +9,7 @@ import configureStore from "./reducers/configureStore";
 import IconMaterialCommunity from 'react-native-vector-icons/MaterialCommunityIcons';
 import EntryScreen from './screens/EntryScreen';
 import ArticleScreen from './screens/ArticleScreen';
+import CommentsScreen from './screens/CommentsScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import { createStackNavigator, createDrawerNavigator } from 'react-navigation';
 import styles from './styles/App.style'
@@ -23,6 +24,12 @@ const RootStack = createStackNavigator({
     },
     Article: {
         screen: ArticleScreen,
+        navigationOptions: ({ navigation }) => ({
+            title: '',
+        }),
+    },
+    Comments: {
+        screen: CommentsScreen,
         navigationOptions: ({ navigation }) => ({
             title: '',
         }),

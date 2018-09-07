@@ -4,16 +4,22 @@ import storage from 'redux-persist/lib/storage' // defaults to localStorage for 
 import thunk from "redux-thunk";
 import ArticleReducer from "./articleReducer";
 import SettingsReducer from "./settingsReducer";
+import CommentsReducer from "./commentsReducer";
 
 const persistConfig = {
     key: 'rootReducer',
     storage,
-    blacklist: ['settingsReducer', 'articleReducer']
+    blacklist: ['settingsReducer', 'articleReducer', 'commentsReducer']
 }
 const persistSettingsConfig = {
     key: 'settingsReducer',
     storage,
     blacklist: []
+}
+const persistCommentsConfig = {
+    key: 'commentsReducer',
+    storage,
+    whitelist: ['token']
 }
 const persistArticleConfig = {
     key: 'articleReducer',
@@ -25,6 +31,7 @@ const persistArticleConfig = {
 const rootReducer = combineReducers({
     articleReducer: persistReducer(persistArticleConfig, ArticleReducer),
     settingsReducer: persistReducer(persistSettingsConfig, SettingsReducer),
+    commentsReducer: persistReducer(persistCommentsConfig, CommentsReducer),
 })
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
