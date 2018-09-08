@@ -4,13 +4,12 @@ import {
     Text
 } from 'react-native';
 import { MediaQuery } from "react-native-responsive-ui";
-import { responsive } from "react-native-responsive-ui";
 import CommentsListComponent from './../components/CommentsListComponent'
 import withTheme from "./../components/Base/ThemableComponent";
 import { getResponsiveStyle } from './../styles/CommentsScreen.style'
 
 
-class ArticleScreen extends React.PureComponent {
+class CommentsScreen extends React.PureComponent {
     constructor(props, context) {
         super(props, context);
         this.state = {};
@@ -35,4 +34,4 @@ class ArticleScreen extends React.PureComponent {
     }
 }
 
-export default withTheme(responsive(ArticleScreen));
+export default withTheme(CommentsScreen);

@@ -15,9 +15,9 @@ import ModalDropdown from './Base/ModalDropdown'
 import SearchBar from './Base/Elements/searchbar/SearchBar'
 import IconOcticons from 'react-native-vector-icons/Octicons';
 import IconMaterialCommunity from 'react-native-vector-icons/MaterialCommunityIcons';
-import { ResponsiveComponent } from "react-native-responsive-ui";
 import withTheme from "./Base/ThemableComponent";
 import { getResponsiveStyle } from './../styles/ArticleListComponent.style'
+import ResponsiveComponent from "./../components/Base/ResponsiveComponent";
 
 
 const categories = [

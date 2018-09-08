@@ -13,6 +13,7 @@ class Node {
 function findNodeWithID(root, id) {
     for (let i = 0; i < root.children.length; i++) {
         let node = root.children[i];
+         // eslint-disable-next-line
         if (node.data && node.data.id == id) {
             return node;
         }

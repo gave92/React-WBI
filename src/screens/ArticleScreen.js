@@ -4,13 +4,13 @@ import {
     Text
 } from 'react-native';
 import { MediaQuery } from "react-native-responsive-ui";
-import { responsive } from "react-native-responsive-ui";
 import ArticleDetailComponent from './../components/ArticleDetailComponent'
 import withTheme from "./../components/Base/ThemableComponent";
 import { getResponsiveStyle } from './../styles/ArticleScreen.style'
+import ResponsiveComponent from "./../components/Base/ResponsiveComponent";
 
 
-class ArticleScreen extends React.PureComponent {
+class ArticleScreen extends ResponsiveComponent {
     constructor(props, context) {
         super(props, context);
         this.state = {};
@@ -31,12 +31,12 @@ class ArticleScreen extends React.PureComponent {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.window.width !== this.props.window.width) {
-            if (this.props.window && this.props.window.width >= 700) {
+        if (!prevState.window || prevState.window.width !== this.state.window.width) {
+            if (this.state.window && this.state.window.width >= 700) {
                 this.props.navigation.goBack();
             }
         }
     }
 }
 
-export default withTheme(responsive(ArticleScreen));
+export default withTheme(ArticleScreen);

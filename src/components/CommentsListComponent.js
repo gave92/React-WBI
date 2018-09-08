@@ -15,9 +15,10 @@ import IconMaterial from 'react-native-vector-icons/MaterialIcons';
 import withTheme from "./Base/ThemableComponent";
 import { getResponsiveStyle } from './../styles/CommentsListComponent.style'
 import CommentItemComponent from './CommentItemComponent';
+import ResponsiveComponent from "./../components/Base/ResponsiveComponent";
 
 
-class ArticleDetailComponent extends React.PureComponent {
+class ArticleDetailComponent extends ResponsiveComponent {
     static defaultProps = {
         refreshing: false,
         cursor: undefined
@@ -91,7 +92,11 @@ class ArticleDetailComponent extends React.PureComponent {
     }
 
     onBackButtonClicked() {
-        this.props.navigation.goBack();
+        if (this.state.window && this.state.window.width >= 700) {
+            this.props.navigation.pop(2);
+        } else {
+            this.props.navigation.goBack();
+        }
     }
 }
 

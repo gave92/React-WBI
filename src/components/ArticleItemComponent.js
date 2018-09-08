@@ -7,12 +7,12 @@ import {
     Image,
     TouchableOpacity,
 } from 'react-native';
-import { ResponsiveComponent } from "react-native-responsive-ui";
 import Card from './Base/Elements/card/Card'
 import { TextView } from './Base/TextView'
 import { withNavigation } from 'react-navigation';
 import withTheme from "./Base/ThemableComponent";
 import { getResponsiveStyle } from './../styles/ArticleItemComponent.style'
+import ResponsiveComponent from "./../components/Base/ResponsiveComponent";
 
 var DomParser = require('react-native-html-parser').DOMParser;
 
