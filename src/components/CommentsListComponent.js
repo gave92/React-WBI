@@ -7,12 +7,14 @@ import {
     FlatList,
     RefreshControl,
     ActivityIndicator,
-    TouchableOpacity
+    TouchableOpacity,
+    InteractionManager,
 } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import IconMaterial from 'react-native-vector-icons/MaterialIcons';
 import withTheme from "./Base/ThemableComponent";
-import { getResponsiveStyle } from './../styles/ArticleCommentsComponent.style'
+import { getResponsiveStyle } from './../styles/CommentsListComponent.style'
+import CommentItemComponent from './CommentItemComponent';
 
 
 class ArticleDetailComponent extends React.Component {
@@ -47,7 +49,7 @@ class ArticleDetailComponent extends React.Component {
                         keyExtractor={(item, index) => item.id.toString()}
                         numColumns={1}
                         ListFooterComponent={this.renderFooter(ui)}
-                        renderItem={({ item }) => <Text>{item.raw_message}</Text>}
+                        renderItem={({ item }) => <CommentItemComponent comment={item} />}
                         onEndReached={this.onLoadMore}
                         onEndThreshold={0}
                         refreshControl={
@@ -73,7 +75,9 @@ class ArticleDetailComponent extends React.Component {
     };
 
     onLoadMore() {
-        this.props.fetchComments({ url: this.props.article.url, id: this.props.article.id, limit: 20, cursor: this.props.cursor })
+        if (this.props.cursor.hasNext) {
+            this.props.fetchComments({ url: this.props.article.url, id: this.props.article.id, limit: 20, cursor: this.props.cursor })
+        }
     }
 
     onRefresh = () => {
@@ -81,9 +85,9 @@ class ArticleDetailComponent extends React.Component {
     }
 
     componentDidMount() {
-        if (!this.props.cursor) {
+        InteractionManager.runAfterInteractions(() => {
             this.props.refreshComments({ url: this.props.article.url, id: this.props.article.id, limit: 20 })
-        }
+        });
     }
 
     onBackButtonClicked() {

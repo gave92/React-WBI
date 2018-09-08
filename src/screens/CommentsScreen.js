@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 import { MediaQuery } from "react-native-responsive-ui";
 import { responsive } from "react-native-responsive-ui";
-import ArticleCommentsComponent from './../components/ArticleCommentsComponent'
+import CommentsListComponent from './../components/CommentsListComponent'
 import withTheme from "./../components/Base/ThemableComponent";
 import { getResponsiveStyle } from './../styles/CommentsScreen.style'
 
@@ -25,7 +25,7 @@ class ArticleScreen extends React.Component {
                         <Text numberOfLines={1} style={ui.appname}>WindowsBlogItalia</Text>
                     </View>
                 </MediaQuery>
-                <ArticleCommentsComponent />
+                <CommentsListComponent />
             </View>
         );
     }

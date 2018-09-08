@@ -44,6 +44,9 @@ export function getResponsiveStyle(theme) {
         {
             query: { theme: 'dark' },
             style: {
+                container: {
+                    backgroundColor: 'black',
+                },
                 topbar: {
                     backgroundColor: '#333333'
                 },

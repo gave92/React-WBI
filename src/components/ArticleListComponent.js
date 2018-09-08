@@ -8,7 +8,8 @@ import {
     FlatList,
     ActivityIndicator,
     RefreshControl,
-    TouchableOpacity
+    TouchableOpacity,
+    InteractionManager
 } from 'react-native';
 import ModalDropdown from './Base/ModalDropdown'
 import SearchBar from './Base/Elements/searchbar/SearchBar'
@@ -43,12 +44,14 @@ class ArticleListComponent extends ResponsiveComponent {
     }
 
     componentDidMount() {
-        if (!this.props.category) {
-            this.props.setArticleFilter(categories[0])
-        }
-        if (this.props.page === 1) {
-            this.props.refreshArticles()
-        }
+        InteractionManager.runAfterInteractions(() => {
+            if (!this.props.category) {
+                this.props.setArticleFilter(categories[0])
+            }
+            if (this.props.page === 1) {
+                this.props.refreshArticles()
+            }
+        });
     }
 
     componentWillReceiveProps(nextProps) {
