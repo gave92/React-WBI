@@ -39,12 +39,6 @@ export function getResponsiveStyle(theme) {
             }
         },
         {
-            query: { minWidth: 400 },
-            style: {
-
-            }
-        },
-        {
             query: { theme: 'dark' },
             style: {
                 card: {

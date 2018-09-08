@@ -9,12 +9,12 @@ import { withNavigation } from 'react-navigation';
 import IconOcticons from 'react-native-vector-icons/Octicons';
 import IconMaterial from 'react-native-vector-icons/MaterialIcons';
 import WebViewComponent from './Base/WebView/WebViewComponent';
-import Styler from './Base/Styler';
+import Styler from './../helpers/Styler';
 import withTheme from "./Base/ThemableComponent";
 import { getResponsiveStyle } from './../styles/ArticleDetailComponent.style'
 
 
-class ArticleDetailComponent extends React.Component {
+class ArticleDetailComponent extends React.PureComponent {
     constructor(props, context) {
         super(props, context);
         this.onBackButtonClicked = this.onBackButtonClicked.bind(this);

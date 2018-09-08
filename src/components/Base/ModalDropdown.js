@@ -2,10 +2,7 @@
  * Created by sohobloo on 16/9/13.
  */
 
-import React, {
-  Component,
-} from 'react';
-
+import React from 'react';
 import {
   StyleSheet,
   Dimensions,
@@ -29,7 +26,7 @@ const TOUCHABLE_ELEMENTS = [
   'TouchableNativeFeedback'
 ];
 
-export default class ModalDropdown extends Component {
+export default class ModalDropdown extends React.PureComponent {
   static propTypes = {
     disabled: PropTypes.bool,
     scrollEnabled: PropTypes.bool,

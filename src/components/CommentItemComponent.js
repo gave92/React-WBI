@@ -7,9 +7,7 @@ import {
     Image,
     TouchableOpacity,
 } from 'react-native';
-import { ResponsiveComponent } from "react-native-responsive-ui";
 import Card from './Base/Elements/card/Card'
-import { TextView } from './Base/TextView'
 import { withNavigation } from 'react-navigation';
 import withTheme from "./Base/ThemableComponent";
 import { getResponsiveStyle } from './../styles/CommentItemComponent.style'
@@ -20,7 +18,7 @@ import it from "moment/locale/it";
 moment.locale("it", it);
 
 
-class CommentItemComponent extends ResponsiveComponent {
+class CommentItemComponent extends React.PureComponent {
     constructor(props, context) {
         super(props, context);
         this.state = { ...this.state };
@@ -30,7 +28,8 @@ class CommentItemComponent extends ResponsiveComponent {
     render() {
         const ui = getResponsiveStyle(this.props.theme);
         return (
-            <TouchableOpacity onPress={this.onCommentClicked}>
+            <TouchableOpacity onPress={this.onCommentClicked}
+                style={{ marginLeft: this.props.comment.thread_depth * 20 }}>
                 <Card containerStyle={[ui.card, { opacity: this.props.selected ? 0.4 : 1 }]}>
                     <View style={ui.container}>
                         <View style={ui.authorRow}>
@@ -42,11 +41,7 @@ class CommentItemComponent extends ResponsiveComponent {
                             </View>
                         </View>
                         <View style={ui.textcontainer}>
-                            <TextView id={this.props.comment.id}
-                                style={ui.text}
-                                ellipsizeMode='tail' numberOfLines={3}>
-                                {this.props.comment.raw_message}
-                            </TextView>
+                            <Text style={ui.text}>{this.props.comment.raw_message}</Text>
                         </View>
                     </View>
                 </Card>

@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import ViewPropTypes from '../config/ViewPropTypes';
 
 
-class Divider extends React.Component {
+class Divider extends React.PureComponent {
   // eslint-disable-next-line
   constructor(props, context) {
     super(props, context);

@@ -3,10 +3,9 @@ import {
     Text,
     Platform
 } from 'react-native';
-import { ResponsiveComponent } from "react-native-responsive-ui";
 
 
-export class TextView extends ResponsiveComponent {
+export class TextView extends React.PureComponent {
     constructor(props, context) {
         super(props, context);
         this.state = { ...this.state };

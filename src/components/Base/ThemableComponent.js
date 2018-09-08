@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 // This is a function that returns a class?
 var withTheme = function (ComposedComponent) {
 
-    var component = class extends React.Component {
+    var component = class extends React.PureComponent {
         static defaultProps = {
             theme: 'default'
         };

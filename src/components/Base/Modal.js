@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react';
 import { View, Platform } from 'react-native'
 import { StyleSheet } from 'react-native'
 
@@ -16,7 +16,7 @@ const Styles = StyleSheet.create({
   }
 })
 
-class UwpModal extends Component {
+class UwpModal extends React.PureComponent {
   render() {
     if (!this.props.visible) return (<View />)
 
@@ -36,13 +36,13 @@ const MODAL_COMPONENTS = {
   windows: UwpModal
 };
 
-export default class Modal extends Component {
+export default class Modal extends React.PureComponent {
   render() {
     const ModalComponent =
       MODAL_COMPONENTS[Platform.OS] || RnModal;
     return (
       <ModalComponent
-        {...this.props}/>
+        {...this.props} />
     );
   }
 }

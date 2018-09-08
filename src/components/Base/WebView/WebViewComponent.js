@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet, View, ActivityIndicator, WebView } from 'react-native';
 
-class WebViewComponent extends Component {
+class WebViewComponent extends React.PureComponent {
   static defaultProps = {
     scrollEnabled: true,
   };

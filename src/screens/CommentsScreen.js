@@ -10,7 +10,7 @@ import withTheme from "./../components/Base/ThemableComponent";
 import { getResponsiveStyle } from './../styles/CommentsScreen.style'
 
 
-class ArticleScreen extends React.Component {
+class ArticleScreen extends React.PureComponent {
     constructor(props, context) {
         super(props, context);
         this.state = {};

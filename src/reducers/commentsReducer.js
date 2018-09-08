@@ -2,8 +2,10 @@
  * Created by amoghbanta on 04/02/17.
  */
 import * as types from "../actions/ActionTypes";
+import getThreadedComments from "./../helpers/Thread"
 
-const initialState = { comments: {} };
+const initialState = { comments: {}, thread: {} };
+
 
 export default function commentsReducer(state = initialState, action) {
     switch (action.type) {
@@ -14,6 +16,7 @@ export default function commentsReducer(state = initialState, action) {
                 data: action.data,
                 cursor: action.cursor,
                 comments: { ...state.comments, [action.id.toString()]: [...state.comments[action.id.toString()], ...newComments] },
+                thread: { ...state.thread, [action.id.toString()]: getThreadedComments([...state.comments[action.id.toString()], ...newComments]) },
                 error: undefined
             };
         case types.DISQUS_COMMENTS_REFRESHED:
@@ -22,6 +25,7 @@ export default function commentsReducer(state = initialState, action) {
                 data: action.data,
                 cursor: action.cursor,
                 comments: { ...state.comments, [action.id.toString()]: action.comments },
+                thread: { ...state.thread, [action.id.toString()]: getThreadedComments(action.comments) },
                 error: undefined
             };
         case types.DISQUS_COMMENTS_FETCHING_ERROR:

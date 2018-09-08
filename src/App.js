@@ -66,7 +66,7 @@ const DrawerStack = createDrawerNavigator({
 
 const storeConfig = configureStore();
 
-class App extends React.Component {
+class App extends React.PureComponent {
     render() {
         return (
             <Provider store={storeConfig.store}>

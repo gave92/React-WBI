@@ -13,7 +13,7 @@ import withTheme from "./../components/Base/ThemableComponent";
 import { getResponsiveStyle } from './../styles/SettingsScreen.style'
 
 
-class SettingsScreen extends React.Component {
+class SettingsScreen extends React.PureComponent {
     constructor(props, context) {
         super(props, context);
         this.onBackButtonClicked = this.onBackButtonClicked.bind(this);

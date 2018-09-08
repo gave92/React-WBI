@@ -11,7 +11,7 @@ import withTheme from "./../components/Base/ThemableComponent";
 import { getResponsiveStyle } from './../styles/EntryScreen.style'
 
 
-class EntryScreen extends React.Component {
+class EntryScreen extends React.PureComponent {
     constructor(props, context) {
         super(props, context);
         this.state = {};

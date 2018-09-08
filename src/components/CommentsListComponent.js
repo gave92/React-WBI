@@ -17,7 +17,7 @@ import { getResponsiveStyle } from './../styles/CommentsListComponent.style'
 import CommentItemComponent from './CommentItemComponent';
 
 
-class ArticleDetailComponent extends React.Component {
+class ArticleDetailComponent extends React.PureComponent {
     static defaultProps = {
         refreshing: false,
         cursor: undefined
@@ -101,7 +101,7 @@ function mapStateToProps(state, ownProps) {
         error: state.commentsReducer.error,
         cursor: state.commentsReducer.cursor,
         refreshing: state.commentsReducer.isloading,
-        comments: state.commentsReducer.comments
+        comments: state.commentsReducer.thread
     }
 }
 
