@@ -7,37 +7,19 @@ export function getResponsiveStyle(theme) {
             query: { minWidth: 0 },
             style: {
                 container: {
+                    backgroundColor: 'white',
                     display: 'flex',
-                    flexShrink: 1,
-                    flexGrow: 1,
-                    flexBasis: 0,
-                    height: '100%'
+                    flexDirection: 'column',
+                    height: '100%',
+                    width: '100%',
+                    overflow: 'hidden'
                 },
-                topbar : {
-                    height: 48, display: 'flex', flexDirection: 'row', alignItems: 'center',
-                    backgroundColor: '#238E9A'
+                titlebar: {
+                    height: 36, backgroundColor: '#238E9A'
                 },
-                backbutton: {
-                    marginLeft: 12, marginTop: 12, marginBottom: 12, marginRight: 6,
-                    // color: "#238E9A"
+                appname: {
+                    fontSize: 12, fontWeight: '400', marginTop: 'auto', marginBottom: 'auto', marginLeft: 6,
                     color: 'white'
-                },
-                button: {
-                    marginLeft: 12, marginTop: 12, marginBottom: 12, marginRight: 12,
-                    color: 'white'
-                },
-                title : {
-                    fontSize: 18, marginTop: 'auto', marginBottom: 'auto', marginLeft: 6,
-                    flexShrink: 1, flexGrow: 1, flexBasis: 0,
-                    color: 'white'
-                }
-            }
-        },
-        {
-            query: { platform: 'android' },
-            style: {
-                topbar: {
-                    height: 56
                 },
             }
         },
@@ -47,19 +29,13 @@ export function getResponsiveStyle(theme) {
                 container: {
                     backgroundColor: 'black',
                 },
-                topbar: {
+                titlebar: {
                     backgroundColor: '#333333'
                 },
-                backbutton: {
+                appname: {
                     color: 'white'
                 },
-                button: {
-                    color: 'white'
-                },
-                title : {
-                    color: 'white'
-                }
             }
-        }
+        },
     ], theme)
 };

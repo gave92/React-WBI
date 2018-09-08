@@ -15,6 +15,11 @@ import withTheme from "./Base/ThemableComponent";
 import { getResponsiveStyle } from './../styles/CommentItemComponent.style'
 
 
+import moment from "moment";
+import it from "moment/locale/it";
+moment.locale("it", it);
+
+
 class CommentItemComponent extends ResponsiveComponent {
     constructor(props, context) {
         super(props, context);
@@ -28,10 +33,13 @@ class CommentItemComponent extends ResponsiveComponent {
             <TouchableOpacity onPress={this.onCommentClicked}>
                 <Card containerStyle={[ui.card, { opacity: this.props.selected ? 0.4 : 1 }]}>
                     <View style={ui.container}>
-                        <View style={ui.author}>
+                        <View style={ui.authorRow}>
                             <Image source={{ uri: this.props.comment.author.avatar.permalink }}
                                 style={ui.image} />
-                            <Text style={ui.biggerText}>{this.props.comment.author.name}</Text>
+                            <View style={ui.author}>
+                                <Text style={ui.biggerText}>{this.props.comment.author.name}</Text>
+                                <Text style={ui.text}>{moment(this.props.comment.createdAt).fromNow()}</Text>
+                            </View>
                         </View>
                         <View style={ui.textcontainer}>
                             <TextView id={this.props.comment.id}

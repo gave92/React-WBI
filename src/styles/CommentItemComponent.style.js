@@ -9,8 +9,11 @@ export function getResponsiveStyle(theme) {
                 container: {
                     display: 'flex', flexDirection: 'column'
                 },
-                author: {
+                authorRow: {
                     display: 'flex', flexDirection: 'row', alignItems: 'center'
+                },
+                author: {
+                    marginLeft: 6
                 },
                 textcontainer: {
                     flexShrink: 1, display: 'flex', marginLeft: 0, marginTop: 6
@@ -26,7 +29,6 @@ export function getResponsiveStyle(theme) {
                     backgroundColor: 'white',
                 },
                 biggerText: {
-                    marginLeft: 6,
                     fontSize: 14,
                     fontWeight: '700',
                     color: 'black'
