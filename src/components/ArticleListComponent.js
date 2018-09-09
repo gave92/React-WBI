@@ -120,7 +120,7 @@ class ArticleListComponent extends ResponsiveComponent {
         this.props.fetchArticles({ page: this.props.page })
     }
 
-    onRefresh = () => {
+    onRefresh() {
         this.props.refreshArticles()
     }
 

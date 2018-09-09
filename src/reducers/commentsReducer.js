@@ -33,6 +33,11 @@ export default function commentsReducer(state = initialState, action) {
                 ...state,
                 error: action.error
             };
+        case types.DISQUS_IS_LOADING:
+            return {
+                ...state,
+                isloading: action.isloading,
+            };
         default:
             return state;
     }

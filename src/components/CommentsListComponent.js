@@ -81,7 +81,7 @@ class ArticleDetailComponent extends ResponsiveComponent {
         }
     }
 
-    onRefresh = () => {
+    onRefresh() {
         this.props.refreshComments({ url: this.props.article.url, id: this.props.article.id, limit: 20 })
     }
 

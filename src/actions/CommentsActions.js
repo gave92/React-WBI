@@ -21,8 +21,7 @@ export function refreshComments(args) {
                 dispatch({ type: types.DISQUS_IS_LOADING, isloading: false })
                 dispatch({ type: types.DISQUS_COMMENTS_REFRESHED, data: data, id: args.id, cursor: data.cursor, comments: data.response })
             })
-            .catch(error => {
-                alert(error.toSource())
+            .catch(error => {                
                 dispatch({ type: types.DISQUS_IS_LOADING, isloading: false })
                 dispatch({ type: types.DISQUS_COMMENTS_FETCHING_ERROR, error: error.message })
             })
