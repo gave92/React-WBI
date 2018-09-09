@@ -438,8 +438,7 @@ class ReactNativeModal extends Component {
         style={[panPosition, computedStyle]}
         pointerEvents="box-none"
         useNativeDriver={useNativeDriver}
-        {...otherProps}
-      >
+        {...otherProps}>
         {_children}
       </View>
     );
@@ -450,8 +449,8 @@ class ReactNativeModal extends Component {
         animationType={"none"}
         visible={this.state.isVisible}
         onRequestClose={onBackButtonPress}
-        {...otherProps}
-      >
+        {...otherProps}>
+
         <TouchableWithoutFeedback onPress={onBackdropPress}>
           <View
             ref={ref => (this.backdropRef = ref)}
@@ -474,8 +473,7 @@ class ReactNativeModal extends Component {
           <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : null}
             pointerEvents="box-none"
-            style={computedStyle.concat([{ margin: 0 }])}
-          >
+            style={computedStyle.concat([{ margin: 0 }])}>
             {containerView}
           </KeyboardAvoidingView>
         )}

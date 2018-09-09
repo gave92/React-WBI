@@ -13,11 +13,15 @@ export default class DialogContainer extends React.PureComponent {
   static propTypes = {
     blurComponentIOS: PropTypes.node,
     children: PropTypes.node.isRequired,
-    visible: PropTypes.bool
+    visible: PropTypes.bool,
+    onBackButtonPress: PropTypes.func,
+    onBackdropPress: PropTypes.func,
   };
 
   static defaultProps = {
-    visible: false
+    visible: false,
+    onBackdropPress: () => null,
+    onBackButtonPress: () => null,
   };
 
   render() {
@@ -59,12 +63,13 @@ export default class DialogContainer extends React.PureComponent {
         isVisible={visible}
         animationIn={Platform.OS === "ios" ? IOS_MODAL_ANIMATION : "zoomIn"}
         animationOut={"fadeOut"}
-        {...otherProps}
-      >
+        onBackButtonPress={this.props.onBackButtonPress}
+        onBackdropPress={this.props.onBackdropPress}
+        {...otherProps}>
+
         <KeyboardAvoidingView
           behavior={Platform.OS === "ios" ? "padding" : undefined}
-          style={styles.container}
-        >
+          style={styles.container}>
           <View style={styles.content}>
             {Platform.OS === "ios" && blurComponentIOS}
             {Platform.OS === "ios" &&
@@ -91,10 +96,8 @@ export default class DialogContainer extends React.PureComponent {
 const styles = StyleSheet.create({
   modal: {
     flex: 1,
-    marginLeft: 12,
-    marginRight: 12,
-    marginTop: 0,
-    marginBottom: 0
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
   container: {
     flex: 1,

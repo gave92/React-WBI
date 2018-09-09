@@ -14,13 +14,22 @@ import withTheme from "./../components/Base/ThemableComponent";
 import { getResponsiveStyle } from './../styles/SettingsScreen.style'
 import Divider from '../components/Base/Elements/divider/Divider';
 import Dialog from "./../components/Base/react-native-dialog";
+import RadioForm from './../components/Base/react-native-simple-radio-button';
 
+
+var radio_props = [
+    { label: 'Light', value: 'default' },
+    { label: 'Dark', value: 'dark' }
+];
 
 class SettingsScreen extends React.PureComponent {
     constructor(props, context) {
         super(props, context);
+        this.state = { ...this.state, themeDialogOpen: false };
         this.onBackButtonClicked = this.onBackButtonClicked.bind(this);
         this.onChangeTheme = this.onChangeTheme.bind(this);
+        this.onDismiss = this.onDismiss.bind(this);
+        this.onOpen = this.onOpen.bind(this);
         this.onChangeNotifications = this.onChangeNotifications.bind(this);
     }
 
@@ -45,7 +54,7 @@ class SettingsScreen extends React.PureComponent {
                 <View style={ui.content}>
                     <View style={ui.section}>
                         <Text style={ui.header}>Personalizzazione</Text>
-                        <TouchableOpacity onPress={this.onChangeTheme}
+                        <TouchableOpacity onPress={this.onOpen}
                             style={ui.setting}>
                             <Text style={ui.biggerText}>Tema</Text>
                             <Text style={ui.text}>{this.props.theme === 'default' ? 'Chiaro' : 'Scuro'}</Text>
@@ -63,19 +72,36 @@ class SettingsScreen extends React.PureComponent {
                         </View>
                         <Divider />
                     </View>
-                    <Dialog.Container visible={true}>
-                        <Dialog.Title>Account delete</Dialog.Title>
-                        <Dialog.Description>Do you want to delete this account? You cannot undo this action.</Dialog.Description>
-                        <Dialog.Button label="Cancel" />
-                        <Dialog.Button label="Delete" />
+                    <Dialog.Container visible={this.state.themeDialogOpen}
+                        onBackdropPress={this.onDismiss}
+                        onBackButtonPress={this.onDismiss}>
+                        <Dialog.Title>Change theme</Dialog.Title>
+                        <RadioForm
+                            radio_props={radio_props}
+                            initial={this.props.theme}
+                            onPress={this.onChangeTheme}
+                            buttonSize={18}
+                            buttonColor="#238E9A"
+                            selectedButtonColor="#238E9A"
+                            animation={false} />
+                        <Dialog.Button label="Cancel" onPress={this.onDismiss} />
                     </Dialog.Container>
                 </View>
             </View>
         );
     }
 
-    onChangeTheme() {
-        this.props.onThemeChanged(this.props.theme === 'dark' ? 'default' : 'dark');
+    onDismiss() {
+        this.setState({ themeDialogOpen: false })
+    }
+
+    onOpen() {
+        this.setState({ themeDialogOpen: true })
+    }
+
+    onChangeTheme(value) {
+        this.props.onThemeChanged(value);
+        this.setState({ themeDialogOpen: false })
     }
 
     onChangeNotifications(active) {
