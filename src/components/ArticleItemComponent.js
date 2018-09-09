@@ -30,7 +30,7 @@ class ArticleItemComponent extends ResponsiveComponent {
             <TouchableOpacity onPress={this.onArticleClicked}>
                 <Card containerStyle={[ui.card, { opacity: this.props.selected ? 0.4 : 1 }]}>
                     <View style={ui.container}>
-                        <Image source={{ uri: this.props.article.thumbnail_images.hometile.url }}
+                        <Image source={{ uri: this.getThumbnail() }}
                             style={ui.image} />
                         <View style={ui.textcontainer}>
                             <Text style={ui.biggerText}>{this.getTitle()}</Text>
@@ -51,6 +51,10 @@ class ArticleItemComponent extends ResponsiveComponent {
         if (this.state.window && this.state.window.width < 700) {
             this.props.navigation.navigate('Article', { title: this.getTitle() })
         }
+    }
+
+    getThumbnail() {
+        return this.props.article.thumbnail_images ? this.props.article.thumbnail_images.hometile.url : null;
     }
 
     getTitle() {

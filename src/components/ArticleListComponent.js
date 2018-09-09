@@ -18,6 +18,7 @@ import IconMaterialCommunity from 'react-native-vector-icons/MaterialCommunityIc
 import withTheme from "./Base/ThemableComponent";
 import { getResponsiveStyle } from './../styles/ArticleListComponent.style'
 import ResponsiveComponent from "./../components/Base/ResponsiveComponent";
+import { Debounce } from 'react-throttle';
 
 
 const categories = [
@@ -80,11 +81,13 @@ class ArticleListComponent extends ResponsiveComponent {
                             refreshing={this.props.refreshing}
                             onRefresh={this.onRefresh} />} />
 
-                <SearchBar lightTheme={this.props.theme !== 'dark'}
-                    ref={this.setRef}
-                    onChangeText={this.onChangeText}
-                    platform="default"
-                    placeholder='Search articles...' />
+                <Debounce time="700" handler="onChangeText">
+                    <SearchBar lightTheme={this.props.theme !== 'dark'}
+                        ref={this.setRef}
+                        onChangeText={this.onChangeText}
+                        platform="default"
+                        placeholder='Search articles...' />
+                </Debounce>
 
                 <View style={ui.topbar}>
                     <TouchableOpacity onPress={this.onHamburgerPressed}>
@@ -104,7 +107,8 @@ class ArticleListComponent extends ResponsiveComponent {
     }
 
     onChangeText(text) {
-
+        this.text = text;
+        this.props.refreshArticles({ search: text })
     }
 
     onSelect(idx, value) {
@@ -117,7 +121,7 @@ class ArticleListComponent extends ResponsiveComponent {
     }
 
     onLoadMore() {
-        this.props.fetchArticles({ page: this.props.page })
+        this.props.fetchArticles({ page: this.props.page, search: this.text })
     }
 
     onRefresh() {
@@ -158,8 +162,8 @@ function mapDispatchToProps(dispatch) {
         fetchArticles(args) {
             dispatch(ArticleActions.fetchArticles(args))
         },
-        refreshArticles() {
-            dispatch(ArticleActions.refreshArticles())
+        refreshArticles(args) {
+            dispatch(ArticleActions.refreshArticles(args))
         },
         setArticleFilter(args) {
             dispatch(ArticleActions.setArticleFilter(args))

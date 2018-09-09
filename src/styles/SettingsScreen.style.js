@@ -30,10 +30,10 @@ export function getResponsiveStyle(theme) {
                 },
                 header: {
                     color: "#238E9A",
-                    paddingTop: 12, paddingBottom: 12, paddingLeft: 6, paddingRight: 6
+                    paddingTop: 12, paddingBottom: 12, paddingLeft: 12, paddingRight: 12
                 },
                 setting: {
-                    paddingTop: 6, paddingBottom: 12, paddingLeft: 6, paddingRight: 6
+                    paddingTop: 6, paddingBottom: 12, paddingLeft: 12, paddingRight: 12
                 },
                 titlebar: {
                     height: 36, backgroundColor: '#238E9A'
