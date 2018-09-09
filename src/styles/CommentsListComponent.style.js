@@ -13,7 +13,7 @@ export function getResponsiveStyle(theme) {
                     flexBasis: 0,
                     height: '100%'
                 },
-                topbar : {
+                topbar: {
                     height: 48, display: 'flex', flexDirection: 'row', alignItems: 'center',
                     backgroundColor: '#238E9A'
                 },
@@ -26,10 +26,17 @@ export function getResponsiveStyle(theme) {
                     marginLeft: 12, marginTop: 12, marginBottom: 12, marginRight: 12,
                     color: 'white'
                 },
-                title : {
+                title: {
                     fontSize: 18, marginTop: 'auto', marginBottom: 'auto', marginLeft: 6,
                     flexShrink: 1, flexGrow: 1, flexBasis: 0,
                     color: 'white'
+                },
+                centered: {
+                    marginLeft: 'auto', marginRight: 'auto', marginTop: 'auto', marginBottom: 'auto'
+                },
+                biggerText: {
+                    fontSize: 14,
+                    color: 'black'
                 }
             }
         },
@@ -53,7 +60,10 @@ export function getResponsiveStyle(theme) {
                 button: {
                     color: 'white'
                 },
-                title : {
+                title: {
+                    color: 'white'
+                },
+                biggerText: {
                     color: 'white'
                 }
             }

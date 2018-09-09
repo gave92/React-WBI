@@ -5,7 +5,7 @@ export function getResponsiveStyle(theme) {
     return ThemableStyleSheet.select([
         {
             query: { minWidth: 0 },
-            style: {                
+            style: {
                 container: {
                     backgroundColor: 'white',
                     display: 'flex',
@@ -20,6 +20,7 @@ export function getResponsiveStyle(theme) {
                     flexGrow: 1,
                     flexShrink: 1,
                     width: '100%',
+                    height: '100%'
                 },
                 titlebar: {
                     height: 36, backgroundColor: '#238E9A'
@@ -39,7 +40,7 @@ export function getResponsiveStyle(theme) {
         },
         {
             query: { theme: 'dark' },
-            style: {                
+            style: {
                 container: {
                     backgroundColor: 'black',
                 },

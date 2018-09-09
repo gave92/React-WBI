@@ -19,8 +19,12 @@ export class TextView extends React.PureComponent {
         if (Platform.OS === 'web') {
             let elem = document.getElementById(this.props.id);
             if (elem && this.props.numberOfLines) {
-                let lh = window.getComputedStyle(elem).getPropertyValue("line-height");
-                elem.style.maxHeight = `${parseInt(lh, 10) * this.props.numberOfLines}px`;
+                let lh = parseInt(window.getComputedStyle(elem).getPropertyValue("line-height"), 10);
+                if (isNaN(lh)) { // stupido chrome
+                    elem.style.lineHeight = 1.2;
+                    lh = parseInt(window.getComputedStyle(elem).getPropertyValue("font-size"), 10) * 1.22;
+                }
+                elem.style.maxHeight = `${lh * this.props.numberOfLines}px`;
             }
         }
     }
