@@ -21,21 +21,26 @@ class ResponsiveComponent extends React.PureComponent {
                 this.unsubscribe
             );
         }
-        else {
-            this.subscribe();
-        }
+
+        this.subscribe();
     }
 
     componentWillUnmount() {
         if (this.props.navigation) {
-            this.didFocus.remove();
-            this.willBlur.remove();
-        } else {
-            this.unsubscribe();
+            if (this.didFocus) {
+                this.didFocus.remove();
+            }
+            if (this.willBlur) {
+                this.willBlur.remove();
+            }
         }
+
+        this.unsubscribe();
     }
 
     subscribe() {
+        this.unsubscribe()
+        this.setState({ window: Dimensions.get("window") });
         this.subscription = Device.subscribeToDimensionChanges(dims => this.setState(dims));
     }
 
