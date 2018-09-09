@@ -20,6 +20,7 @@
     "react-art": "16.4.2",
     "react-dom": "16.4.2",
     "react-native": "0.55.4",
+    "react-native-animatable": "^1.3.0",
     "react-native-axios": "^0.17.1",
     "react-native-html-parser": "https://github.com/g6ling/react-native-html-parser.git",
     "react-native-responsive-ui": "https://github.com/wcandillon/react-native-responsive-ui.git",

@@ -13,6 +13,7 @@ import IconMaterial from 'react-native-vector-icons/MaterialIcons';
 import withTheme from "./../components/Base/ThemableComponent";
 import { getResponsiveStyle } from './../styles/SettingsScreen.style'
 import Divider from '../components/Base/Elements/divider/Divider';
+import Dialog from "./../components/Base/react-native-dialog";
 
 
 class SettingsScreen extends React.PureComponent {
@@ -62,6 +63,12 @@ class SettingsScreen extends React.PureComponent {
                         </View>
                         <Divider />
                     </View>
+                    <Dialog.Container visible={true}>
+                        <Dialog.Title>Account delete</Dialog.Title>
+                        <Dialog.Description>Do you want to delete this account? You cannot undo this action.</Dialog.Description>
+                        <Dialog.Button label="Cancel" />
+                        <Dialog.Button label="Delete" />
+                    </Dialog.Container>
                 </View>
             </View>
         );
