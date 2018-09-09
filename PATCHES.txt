@@ -1,6 +1,10 @@
 PATCHES
 
-React-Navigation
+####React-Throttle
+FILE: .\node_modules\react-throttle\.babelrc
+"presets": ["react-native"]
+
+####React-Navigation
 FILE: .\node_modules\react-navigation-stack\dist\views\Transitioner.js
 STYLE:
     main: {
@@ -30,7 +34,7 @@ FILE: .\node_modules\react-navigation-stack\dist\views\Header\Header.js
 STYLE:
 	const TITLE_OFFSET_LEFT_ALIGN = 20;
 
-Chrome developer tools
+####Chrome developer tools
 FILE: .\node_modules\opn\index.js
 WIN32:
     if (opts.app) {
