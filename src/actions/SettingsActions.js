@@ -6,3 +6,9 @@ export function setTheme(theme) {
         dispatch({ type: types.GUI_SET_THEME, theme: theme })
     }
 }
+
+export function setNotifications(active) {
+    return (dispatch) => {
+        dispatch({ type: types.GUI_SET_NOTIFICATIONS, notifications: active })
+    }
+}

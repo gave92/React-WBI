@@ -1,0 +1,29 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
+#pragma once
+
+#include <jsrt.h>
+
+struct SerializedSourceContext
+{
+    HANDLE fileHandle;
+    HANDLE mapHandle;
+    BYTE* byteBuffer;
+    wchar_t* scriptBuffer;
+
+    ~SerializedSourceContext()
+    {
+        if (fileHandle != NULL)
+        {
+            UnmapViewOfFile(byteBuffer);
+            CloseHandle(mapHandle);
+            CloseHandle(fileHandle);
+        }
+        else
+        {
+            delete[] byteBuffer;
+        }
+        delete[] scriptBuffer;
+    }
+};

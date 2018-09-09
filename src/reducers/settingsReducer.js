@@ -3,10 +3,15 @@
  */
 import * as types from "../actions/ActionTypes";
 
-const initialState = { theme: 'default' };
+const initialState = { theme: 'default', notifications: true };
 
 export default function settingsReducer(state = initialState, action) {
     switch (action.type) {
+        case types.GUI_SET_NOTIFICATIONS:
+            return {
+                ...state,
+                notifications: action.notifications,
+            };
         case types.GUI_SET_THEME:
             return {
                 ...state,

@@ -14,6 +14,27 @@ export function getResponsiveStyle(theme) {
                     width: '100%',
                     height: '100%',
                 },
+                content: {
+                    
+                },
+                switch: {
+                    tintColor: 'black',
+                    onTintColor: '#238E9A',
+                },
+                horizontal: {
+                    flexDirection: 'row',
+                    justifyContent: 'space-between'
+                },
+                section: {
+
+                },
+                header: {
+                    color: "#238E9A",
+                    paddingTop: 12, paddingBottom: 12, paddingLeft: 6, paddingRight: 6
+                },
+                setting: {
+                    paddingTop: 6, paddingBottom: 12, paddingLeft: 6, paddingRight: 6
+                },
                 titlebar: {
                     height: 36, backgroundColor: '#238E9A'
                 },
@@ -21,7 +42,7 @@ export function getResponsiveStyle(theme) {
                     fontSize: 12, fontWeight: '400', marginTop: 'auto', marginBottom: 'auto', marginLeft: 6,
                     color: 'white'
                 },
-                topbar : {
+                topbar: {
                     height: 48, display: 'flex', flexDirection: 'row', alignItems: 'center',
                     backgroundColor: '#238E9A'
                 },
@@ -29,9 +50,14 @@ export function getResponsiveStyle(theme) {
                     marginLeft: 12, marginTop: 12, marginBottom: 12, marginRight: 6,
                     color: 'white'
                 },
-                title : {
+                title: {
                     fontSize: 18, marginTop: 'auto', marginBottom: 'auto', marginLeft: 6,
                     color: 'white'
+                },
+                biggerText: {
+                    fontSize: 14,
+                    fontWeight: '700',
+                    color: 'black'
                 },
                 text: {
                     color: 'black'
@@ -51,6 +77,12 @@ export function getResponsiveStyle(theme) {
             style: {
                 backbutton: {
                     color: 'white'
+                },
+                biggerText: {
+                    color: 'white'
+                },
+                switch: {
+                    tintColor: 'white',
                 },
                 text: {
                     color: 'white'

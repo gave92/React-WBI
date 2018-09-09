@@ -60,7 +60,8 @@ const DrawerStack = createDrawerNavigator({
             activeTintColor: '#238E9A',
             inactiveTintColor: 'black'
         },
-        drawerBackgroundColor: 'white'
+        drawerBackgroundColor: 'white',
+        initialRouteName: 'Home',
     });
 
 
