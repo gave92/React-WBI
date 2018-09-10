@@ -35,8 +35,26 @@ export function getResponsiveStyle(theme) {
                     flexGrow: 1,
                     flexBasis: 0,
                     height: '100%',
+                },
+                comments: {
+                    width: '20%',
+                    maxWidth: 700,
+                    minWidth: 350,
+                },
+                list: {
+                    width: '100%',
                 }
             }
+        },
+        {
+            query: { minWidth: 700 },
+            style: {
+                list: {
+                    width: '30%',
+                    maxWidth: 700,
+                    minWidth: 270,
+                },
+            },
         },
         {
             query: { theme: 'dark' },

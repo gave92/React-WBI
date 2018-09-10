@@ -17,7 +17,6 @@ import IconOcticons from 'react-native-vector-icons/Octicons';
 import IconMaterialCommunity from 'react-native-vector-icons/MaterialCommunityIcons';
 import withTheme from "./Base/ThemableComponent";
 import { getResponsiveStyle } from './../styles/ArticleListComponent.style'
-import ResponsiveComponent from "./../components/Base/ResponsiveComponent";
 import { Debounce } from 'react-throttle';
 
 
@@ -29,7 +28,7 @@ const categories = [
     { name: 'Lumia', tag: 'lumia' },
     { name: 'Aggiornamenti', tag: 'store-update' }];
 
-class ArticleListComponent extends ResponsiveComponent {
+class ArticleListComponent extends React.PureComponent {
     static defaultProps = {
         refreshing: false,
         page: 1

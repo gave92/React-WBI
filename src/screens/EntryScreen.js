@@ -7,11 +7,13 @@ import { MediaQuery } from "react-native-responsive-ui";
 import { Display } from "./../components/Base/Display";
 import ArticleListComponent from './../components/ArticleListComponent'
 import ArticleDetailComponent from './../components/ArticleDetailComponent'
+import CommentsListComponent from './../components/CommentsListComponent'
 import withTheme from "./../components/Base/ThemableComponent";
 import { getResponsiveStyle } from './../styles/EntryScreen.style'
+import ResponsiveComponent from "./../components/Base/ResponsiveComponent";
 
 
-class EntryScreen extends React.PureComponent {
+class EntryScreen extends ResponsiveComponent {
     constructor(props, context) {
         super(props, context);
         this.state = {};
@@ -30,7 +32,9 @@ class EntryScreen extends React.PureComponent {
                     <Display minWidth={700} enabledStyle={ui.detail}>
                         <ArticleDetailComponent />
                     </Display>
-                    <ArticleListComponent rootNavigation={this.props.rootNavigation} />
+                    <Display minWidth={0} enabledStyle={ui.list}>
+                        <ArticleListComponent rootNavigation={this.props.rootNavigation} />
+                    </Display>
                 </View>
             </View>
         );

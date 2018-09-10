@@ -43,7 +43,8 @@ class ArticleDetailComponent extends ResponsiveComponent {
                                     style={ui.backbutton} />
                             </TouchableOpacity> : null
                         }
-                        <Text numberOfLines={1} style={ui.title}>{this.props.article.title_plain}</Text>
+                        {/*<Text numberOfLines={1} style={ui.title}>{this.props.article.title_plain}</Text>*/}
+                        <Text numberOfLines={1} style={ui.title}>Commenti</Text>
                     </View>
 
                     <FlatList data={this.props.comments[this.props.article.id]}
@@ -85,10 +86,14 @@ class ArticleDetailComponent extends ResponsiveComponent {
         this.props.refreshComments({ url: this.props.article.url, id: this.props.article.id, limit: 20 })
     }
 
-    componentDidMount() {
-        InteractionManager.runAfterInteractions(() => {
-            this.props.refreshComments({ url: this.props.article.url, id: this.props.article.id, limit: 20 })
-        });
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.article !== this.props.article) {
+            if (nextProps.article) {
+                InteractionManager.runAfterInteractions(() => {
+                    this.props.refreshComments({ url: nextProps.article.url, id: nextProps.article.id, limit: 20 })
+                });
+            }
+        }
     }
 
     onBackButtonClicked() {

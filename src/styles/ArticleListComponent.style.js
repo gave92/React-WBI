@@ -34,17 +34,7 @@ export function getResponsiveStyle(theme) {
                     color: 'black'
                 }
             },
-        },
-        {
-            query: { minWidth: 700 },
-            style: {
-                container: {
-                    width: '30%',
-                    maxWidth: 700,
-                    minWidth: 270,
-                }
-            },
-        },
+        },        
         {
             query: { platform: 'android' },
             style: {
