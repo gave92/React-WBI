@@ -25,11 +25,17 @@ class EntryScreen extends ResponsiveComponent {
         return <DrawerSidebar contentComponent={CommentsListComponent} />;
     };
 
+    setRef = ref => this.setState({ drawer: ref });
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return (nextState.drawer === this.state.drawer);
+    }
+
     render() {
         const ui = getResponsiveStyle(this.props.theme);
         return (
             <DrawerLayout
-                ref={(element) => this.setState({ drawer: element })}
+                ref={this.setRef}
                 drawerBackgroundColor='white'
                 drawerWidth={450}
                 useNativeAnimations={true}
