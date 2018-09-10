@@ -2,7 +2,7 @@ import React from 'react';
 import { Dimensions } from "react-native";
 import { Device } from "react-native-responsive-ui";
 
-class ResponsiveComponent extends React.PureComponent {
+class ResponsiveComponent extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = { window: Dimensions.get("window") };
