@@ -17,7 +17,7 @@ import styles from './styles/App.style'
 
 const RootStack = createStackNavigator({
     Home: {
-        screen: ({ screenProps }) => <EntryScreen rootNavigation={screenProps.rootNavigation} />,
+        screen: ({ screenProps }) => <EntryScreen screenProps={screenProps} />,
         navigationOptions: ({ navigation }) => ({
             title: 'WindowsBlogItalia',
         }),

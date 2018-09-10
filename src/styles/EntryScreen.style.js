@@ -36,11 +36,6 @@ export function getResponsiveStyle(theme) {
                     flexBasis: 0,
                     height: '100%',
                 },
-                comments: {
-                    width: '20%',
-                    maxWidth: 700,
-                    minWidth: 350,
-                },
                 list: {
                     width: '100%',
                 }

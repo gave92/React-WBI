@@ -10,6 +10,7 @@ import ArticleDetailComponent from './../components/ArticleDetailComponent'
 import CommentsListComponent from './../components/CommentsListComponent'
 import withTheme from "./../components/Base/ThemableComponent";
 import { getResponsiveStyle } from './../styles/EntryScreen.style'
+import { createDrawerNavigator } from 'react-navigation'
 import ResponsiveComponent from "./../components/Base/ResponsiveComponent";
 
 
@@ -28,7 +29,7 @@ class EntryScreen extends ResponsiveComponent {
                         <Text numberOfLines={1} style={ui.appname}>WindowsBlogItalia</Text>
                     </View>
                 </MediaQuery>
-                <View style={ui.content}>                    
+                <View style={ui.content}>
                     <Display minWidth={700} enabledStyle={ui.detail}>
                         <ArticleDetailComponent />
                     </Display>
@@ -41,4 +42,22 @@ class EntryScreen extends ResponsiveComponent {
     }
 }
 
-export default withTheme(EntryScreen);
+const Screen = withTheme(EntryScreen);
+
+const CommentsDrawer = createDrawerNavigator(
+    {
+        Home: {
+            screen: ({ screenProps }) => <Screen rootNavigation={screenProps.rootNavigation} />,
+        },
+    },
+    {
+        initialRouteName: 'Home',
+        drawerWidth: 400,
+        contentComponent: props => <CommentsListComponent {...props} />,
+        drawerBackgroundColor: 'white',
+        drawerPosition: 'right',
+    },
+);
+
+export default CommentsDrawer;
+
