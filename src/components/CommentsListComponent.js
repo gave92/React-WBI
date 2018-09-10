@@ -9,6 +9,7 @@ import {
     ActivityIndicator,
     TouchableOpacity,
     InteractionManager,
+    Dimensions
 } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import IconMaterial from 'react-native-vector-icons/MaterialIcons';
@@ -18,7 +19,7 @@ import CommentItemComponent from './CommentItemComponent';
 import ResponsiveComponent from "./../components/Base/ResponsiveComponent";
 
 
-class ArticleDetailComponent extends ResponsiveComponent {
+class CommentsListComponent extends ResponsiveComponent {
     static defaultProps = {
         refreshing: false,
         cursor: undefined
@@ -96,6 +97,10 @@ class ArticleDetailComponent extends ResponsiveComponent {
         }
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return (nextState.window === this.state.window);
+    }
+
     onBackButtonClicked() {
         if (this.state.window && this.state.window.width >= 700) {
             this.props.navigation.pop(2);
@@ -126,4 +131,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withNavigation(withTheme(ArticleDetailComponent)));
+export default connect(mapStateToProps, mapDispatchToProps)(withNavigation(withTheme(CommentsListComponent)));

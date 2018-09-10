@@ -30,12 +30,14 @@ class ArticleScreen extends ResponsiveComponent {
         );
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (!prevState.window || prevState.window.width !== this.state.window.width) {
-            if (this.state.window && this.state.window.width >= 700) {
+    shouldComponentUpdate(nextProps, nextState) {
+        if (!this.state.window || nextState.window.width !== this.state.window.width) {
+            if (nextState.window && nextState.window.width >= 700) {
                 this.props.navigation.goBack();
             }
         }
+
+        return (nextProps.theme != this.props.theme);
     }
 }
 

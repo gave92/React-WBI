@@ -28,27 +28,29 @@ class EntryScreen extends ResponsiveComponent {
     render() {
         const ui = getResponsiveStyle(this.props.theme);
         return (
-            <View style={ui.container}>
-                <MediaQuery platform='windows'>
-                    <View style={ui.titlebar}>
-                        <Text numberOfLines={1} style={ui.appname}>WindowsBlogItalia</Text>
-                    </View>
-                </MediaQuery>
-                <View style={ui.content}>
-                    <Display minWidth={700} enabledStyle={ui.detail}>
-                        <DrawerLayout drawerBackgroundColor='white'
-                            drawerWidth={400}
-                            useNativeAnimations={true}
-                            drawerPosition={DrawerLayout.positions.Right}
-                            renderNavigationView={this._renderNavigationView}>
+            <DrawerLayout
+                ref={c => { this._drawer = c; }}
+                drawerBackgroundColor='white'
+                drawerWidth={400}
+                useNativeAnimations={true}
+                drawerPosition={DrawerLayout.positions.Right}
+                renderNavigationView={this._renderNavigationView}>
+                <View style={ui.container}>
+                    <MediaQuery platform='windows'>
+                        <View style={ui.titlebar}>
+                            <Text numberOfLines={1} style={ui.appname}>WindowsBlogItalia</Text>
+                        </View>
+                    </MediaQuery>
+                    <View style={ui.content}>
+                        <Display minWidth={700} enabledStyle={ui.detail}>
                             <ArticleDetailComponent />
-                        </DrawerLayout>
-                    </Display>
-                    <Display minWidth={0} enabledStyle={ui.list}>
-                        <ArticleListComponent rootNavigation={this.props.rootNavigation} />
-                    </Display>
+                        </Display>
+                        <Display minWidth={0} enabledStyle={ui.list}>
+                            <ArticleListComponent rootNavigation={this.props.rootNavigation} />
+                        </Display>
+                    </View>
                 </View>
-            </View>
+            </DrawerLayout>
         );
     }
 }

@@ -28,10 +28,6 @@ class CommentsScreen extends React.PureComponent {
             </View>
         );
     }
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-
-    }
 }
 
 export default withTheme(CommentsScreen);
