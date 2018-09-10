@@ -17,7 +17,7 @@ import styles from './styles/App.style'
 
 const RootStack = createStackNavigator({
     Home: {
-        screen: ({ screenProps }) => <EntryScreen screenProps={screenProps} />,
+        screen: ({ screenProps }) => <EntryScreen rootNavigation={screenProps.rootNavigation} />,
         navigationOptions: ({ navigation }) => ({
             title: 'WindowsBlogItalia',
         }),
@@ -72,10 +72,10 @@ class App extends React.PureComponent {
         return (
             <Provider store={storeConfig.store}>
                 <PersistGate loading={
-                                <View style={styles.container}>
-                                    <ActivityIndicator style={styles.centered} animating size="large" />
-                                </View>}
-                             persistor={storeConfig.persistor}>
+                    <View style={styles.container}>
+                        <ActivityIndicator style={styles.centered} animating size="large" />
+                    </View>}
+                    persistor={storeConfig.persistor}>
                     <DrawerStack />
                 </PersistGate>
             </Provider>

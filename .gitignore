@@ -35,7 +35,7 @@ local.properties
 node_modules/*
 !node_modules/react-native-windows/
 !node_modules/react-navigation-stack/
-!node_modules/react-navigation-stack/
+!node_modules/react-navigation-drawer/
 !node_modules/react-native-drawer-layout/
 npm-debug.log
 yarn-error.log

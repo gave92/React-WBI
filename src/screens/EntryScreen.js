@@ -10,7 +10,8 @@ import ArticleDetailComponent from './../components/ArticleDetailComponent'
 import CommentsListComponent from './../components/CommentsListComponent'
 import withTheme from "./../components/Base/ThemableComponent";
 import { getResponsiveStyle } from './../styles/EntryScreen.style'
-import { createDrawerNavigator } from 'react-navigation'
+import DrawerLayout from 'react-native-drawer-layout-polyfill';
+import { DrawerSidebar } from 'react-navigation';
 import ResponsiveComponent from "./../components/Base/ResponsiveComponent";
 
 
@@ -19,6 +20,10 @@ class EntryScreen extends ResponsiveComponent {
         super(props, context);
         this.state = {};
     }
+
+    _renderNavigationView = () => {
+        return <DrawerSidebar contentComponent={CommentsListComponent} />;
+    };
 
     render() {
         const ui = getResponsiveStyle(this.props.theme);
@@ -31,7 +36,13 @@ class EntryScreen extends ResponsiveComponent {
                 </MediaQuery>
                 <View style={ui.content}>
                     <Display minWidth={700} enabledStyle={ui.detail}>
-                        <ArticleDetailComponent />
+                        <DrawerLayout drawerBackgroundColor='white'
+                            drawerWidth={400}
+                            useNativeAnimations={true}
+                            drawerPosition={DrawerLayout.positions.Right}
+                            renderNavigationView={this._renderNavigationView}>
+                            <ArticleDetailComponent />
+                        </DrawerLayout>
                     </Display>
                     <Display minWidth={0} enabledStyle={ui.list}>
                         <ArticleListComponent rootNavigation={this.props.rootNavigation} />
@@ -42,22 +53,4 @@ class EntryScreen extends ResponsiveComponent {
     }
 }
 
-const Screen = withTheme(EntryScreen);
-
-const CommentsDrawer = createDrawerNavigator(
-    {
-        Home: {
-            screen: ({ screenProps }) => <Screen rootNavigation={screenProps.rootNavigation} />,
-        },
-    },
-    {
-        initialRouteName: 'Home',
-        drawerWidth: 400,
-        contentComponent: props => <CommentsListComponent {...props} />,
-        drawerBackgroundColor: 'white',
-        drawerPosition: 'right',
-    },
-);
-
-export default CommentsDrawer;
-
+export default withTheme(EntryScreen);
