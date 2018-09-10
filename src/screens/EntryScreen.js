@@ -27,15 +27,12 @@ class EntryScreen extends ResponsiveComponent {
 
     setRef = ref => this.setState({ drawer: ref });
 
-    shouldComponentUpdate(nextProps, nextState) {
-        return (nextState.drawer === this.state.drawer);
-    }
-
     render() {
         const ui = getResponsiveStyle(this.props.theme);
         return (
             <DrawerLayout
                 ref={this.setRef}
+                drawerLockMode={this.state.window && this.state.window.width >= 1300 ? 'unlocked' : 'locked-closed'}
                 drawerBackgroundColor='white'
                 drawerWidth={450}
                 useNativeAnimations={true}
