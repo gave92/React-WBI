@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import {
     View,
     Text,
-    TouchableOpacity
+    TouchableOpacity,
+    Dimensions
 } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import IconOcticons from 'react-native-vector-icons/Octicons';
@@ -46,7 +47,11 @@ class ArticleDetailComponent extends React.PureComponent {
     }
 
     onCommentClicked() {
-        this.props.navigation.navigate('Comments', { title: this.getTitle() })
+        if (this.props.drawer && Dimensions.get('window').width >= 1300) {
+            this.props.drawer.openDrawer();
+        } else {
+            this.props.navigation.navigate('Comments', { title: this.getTitle() })
+        }
     }
 
     onBackButtonClicked() {
@@ -57,7 +62,7 @@ class ArticleDetailComponent extends React.PureComponent {
         const entities = require('html-entities').Html5Entities;
         return entities.decode(this.props.article.title_plain);
     }
-    
+
     getHtml() {
         let styler = new Styler();
         return styler.ApplyStyle(this.props.article.content, this.props.theme);

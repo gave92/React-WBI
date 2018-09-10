@@ -29,9 +29,9 @@ class EntryScreen extends ResponsiveComponent {
         const ui = getResponsiveStyle(this.props.theme);
         return (
             <DrawerLayout
-                ref={c => { this._drawer = c; }}
+                ref={(element) => this.setState({ drawer: element })}
                 drawerBackgroundColor='white'
-                drawerWidth={400}
+                drawerWidth={450}
                 useNativeAnimations={true}
                 drawerPosition={DrawerLayout.positions.Right}
                 renderNavigationView={this._renderNavigationView}>
@@ -43,7 +43,7 @@ class EntryScreen extends ResponsiveComponent {
                     </MediaQuery>
                     <View style={ui.content}>
                         <Display minWidth={700} enabledStyle={ui.detail}>
-                            <ArticleDetailComponent />
+                            <ArticleDetailComponent drawer={this.state.drawer} />
                         </Display>
                         <Display minWidth={0} enabledStyle={ui.list}>
                             <ArticleListComponent rootNavigation={this.props.rootNavigation} />
