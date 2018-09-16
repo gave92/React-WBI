@@ -8,8 +8,7 @@ import {
     RefreshControl,
     ActivityIndicator,
     TouchableOpacity,
-    InteractionManager,
-    Dimensions
+    InteractionManager
 } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import IconMaterial from 'react-native-vector-icons/MaterialIcons';

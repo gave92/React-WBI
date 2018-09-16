@@ -37,7 +37,7 @@ class ArticleScreen extends ResponsiveComponent {
             }
         }
 
-        return (nextProps.theme != this.props.theme);
+        return (nextProps.theme !== this.props.theme);
     }
 }
 

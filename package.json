@@ -49,5 +49,6 @@
   "jest": {
     "preset": "react-native"
   },
-  "main": "index.electron.js"
+  "main": "index.electron.js",
+  "homepage" : "https://discountscraper.altervista.org/node/build/"
 }
