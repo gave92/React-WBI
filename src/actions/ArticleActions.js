@@ -1,14 +1,15 @@
+import { Platform } from 'react-native';
 // import axios from 'react-native-axios';
 import * as types from "./ActionTypes";
 
-const cors_url = 'https://cors-anywhere.herokuapp.com';
+const cors_url = Platform.OS === 'web' ? 'https://cors-anywhere.herokuapp.com/' : '';
 
 function getUrl(args) {
     let validated = Object.assign({ search: '', page: 1, count: 20 }, args);
     if (validated.search) {
-        return `${cors_url}/https://windowsblogitalia.com/api/get_search_results/?search=${validated.search}&count=${validated.count}&page=${validated.page}`;
+        return `${cors_url}https://windowsblogitalia.com/api/get_search_results/?search=${validated.search}&count=${validated.count}&page=${validated.page}`;
     } else {
-        return `${cors_url}/https://www.windowsblogitalia.com/?json=1&count=${validated.count}&page=${validated.page}`;
+        return `${cors_url}https://www.windowsblogitalia.com/?json=1&count=${validated.count}&page=${validated.page}`;
     }
 }
 
