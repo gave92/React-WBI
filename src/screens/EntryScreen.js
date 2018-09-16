@@ -33,7 +33,7 @@ class EntryScreen extends ResponsiveComponent {
             <DrawerLayout
                 ref={this.setRef}
                 drawerLockMode={this.state.window && this.state.window.width >= 1300 ? 'unlocked' : 'locked-closed'}
-                drawerBackgroundColor='white'
+                drawerBackgroundColor={this.props.theme === 'default' ? 'white' : 'black'}
                 drawerWidth={450}
                 useNativeAnimations={true}
                 drawerPosition={DrawerLayout.positions.Right}
