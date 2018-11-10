@@ -58,24 +58,24 @@
   To create a production bundle, use `npm run build` or `yarn build`.
 -->
   <script type="text/JavaScript">
-    function observe() {
+    function observe(ifr) {
       isCompliant = !!("srcdoc" in document.createElement("iframe"));
       if (isCompliant) return;
-      var ifr = document.querySelector('iframe');
+      //var ifr = document.querySelector('iframe');
       if (!ifr) return;
       var config = {attributes: true};
       var callback = function(ml) {
         for(var m of ml) {
           if (m.attributeName === 'srcdoc') 
-            loadIFrame();
+            loadIFrame(ifr);
         }
       }
       var observer = new MutationObserver(callback);
       observer.observe(ifr, config);
       return observer;
     }
-    function loadIFrame() {
-      var ifr = document.querySelector('iframe');
+    function loadIFrame(ifr) {
+      //var ifr = document.querySelector('iframe');
       if (!ifr) return;
       var doc = ifr.contentWindow.document;
       doc.open('text/html', 'replace');

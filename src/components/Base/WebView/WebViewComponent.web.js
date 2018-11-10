@@ -37,9 +37,9 @@ class WebViewComponent extends React.PureComponent {
     if (this.props.onMessage) {
       window.addEventListener('message', this.onMessage, true);
     }
-    this.observer = window.observe();
+    this.observer = window.observe(this.frameRef);
     if (this.observer) {
-      window.loadIFrame();
+      window.loadIFrame(this.frameRef);
     }
   }
 
